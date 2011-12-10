@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+<div class="headerSubsites">
+	<div class="subsiteIcon" style="width: 92px;">
+		<img src="{{ STATIC_URL }}icons/orderIcon.png"/>
+	</div>
+	<div class="subsiteDescrOptions">
+		<div class="title">PEDIDOS</div>
+		<div id="submenuPedido" class="subSiteMenu">
+			<a href="/pedidos/"><span id="submenuPedido_1" onclick="selectSubmenu(this.id)">Consultar</span></a>
+			<span id="submenuPedido_2" class="selectedSubmenu" onclick="selectSubmenu(this.id)">Ingresar</span>
+			<a href="/pedidos/modificar/"><span id="submenuPedido_3" onclick="selectSubmenu(this.id)">Modificar</span></a>
+			<a href="/pedidos/solicitados/"><span id="submenuPedido_4" onclick="selectSubmenu(this.id)">Autorizar / Cancelar</span></a>
+			<a href="/pedidos/eliminar/"><span id="submenuPedido_5" onclick="selectSubmenu(this.id)">Eliminar</span></a>
+		</div>
+	</div>
+</div>
+<div id="ContentPaneSubsites" class="contentPaneSubsites" style="padding: 10px;">
+	<div>
+		<table style="width: 100%;" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>
+					<img src="" height="150" width="150" />
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<form method="POST">
+			<label for="idClientePedido">
+				Codigo de cliente:				
+			</label>
+			
+			{% if idCliente > 0 %}
+				<input id="idClientePedido" name="idCliente" value="{{ idCliente }}" readonly="readonly" type="text" />
+			{% else %}
+				<input id="idClientePedido" name="idCliente" type="text" />
+			{% endif %}
+			
+			{% csrf_token %}
+			<table class="orderTable" cellspacing="0" cellpadding="0" style="font-size: 11pt; color: #000;">
+				<thead>
+					<tr>
+						<th class="rightBorder">Modelo</th>
+						<th class="rightBorder">Talla</th>
+						<th class="rightBorder">Suela</th>
+						<th class="rightBorder">Texturas</th>
+						<th class="rightBorder">Descripci&oacute;n</th>
+						<th class="rightBorder" style="width: 80px;">Cant. Pares</th>
+						<th class="rightBorder" style="width: 70px;">Total</th>
+					</tr>
+				</thead>
+				
+				<tbody id="tablaDeDetalles" style="text-shadow: none;">
+					<tr id="1" style="height: 30px; vertical-align: middle; border-bottom: 1px solid #aaa;">
+						<td style="border-right: 1px solid #aaa; vertical-align: middle;">
+							<!--a class="removerFila" onclick="$(this).parents('tr').remove()">&nbsp;</a-->
+							<select name="modelos" onchange="modeloCambiado(this)">
+								<option value="0">-----</option>
+								{% for mods in modelos %}
+									{% for m in mods %}
+										{% if forloop.first %}
+											<optgroup label="{{ m.categoria.nombre }}">
+										{% endif %}
+										
+										<option class="modeloOption" value="{{ m.pk }}">{{ m }}</option>
+									{% endfor %}
+								</optgroup>
+								{% endfor %}
+							</select>
+						</td>
+						
+						<td style="border-right: 1px solid #aaa; vertical-align: middle;">
+							<select id="tallas_1" name="tallas">
+								<option value="0">-----</option>
+							</select>
+						</td>
+						
+						<td style="border-right: 1px solid #aaa; vertical-align: middle;">
+							<select id="suelas_1" name="suelas">
+								<option value="0">-----</option>
+							</select>
+						</td>
+						
+						<td id="texturas_1" style="border-right: 1px solid #aaa; background-color: #ddd; width: 200px;">
+							
+						</td>
+						
+						<td style="border-right: 1px solid #aaa; vertical-align: middle; width: 206px">
+							<textarea style="max-width: 200px;" maxlength="100" name="descripciones">
+							</textarea>
+						</td>
+						
+						<td style="border-right: 1px solid #aaa; vertical-align: middle;">
+							<input id="cantidades_1" type="text" name="cantidades" style="width: 60%; text-align:center;" onkeyup='$(this).val($(this).val().replace(/[^0-9]/g, ""))' onblur='$(this).val($(this).val().replace(/[^0-9]/g, ""))'>
+						</td>
+						
+						<td style="vertical-align: middle; background-color: #DDDDDD;">
+							<div id="totalTabla_1">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+				
+				<tfoot id="totales">
+					<tr id="agregarNuevaFila">
+						<td class="agregarNuevaFila" colspan="8" onclick="agregarNuevaFila()">
+							Agregar otro modelo	
+						</td>
+					</tr>
+					
+					<tr class="borderBottom">
+						<td colspan="6" class="borderRight" style="text-align: right;">
+							Subtotal
+						</td>
+						
+						<td colspan="2" style="text-align: right;">
+						</td>
+					</tr>
+						
+					<tr class="borderBottom">
+						<td colspan="6" class="borderRight" style="text-align: right;">
+							Descuento
+						</td>
+						
+						<td colspan="2" style="text-align: right;">
+						</td>
+					</tr>
+						
+					<tr class="borderBottom">
+						<td colspan="6" class="borderRight" style="text-align: right;">
+							ISV
+						</td>
+						
+						<td colspan="2" style="text-align: right;">
+						</td>
+					</tr>
+						
+					<tr>
+						<td colspan="6" class="borderRight" style="text-align: right;">
+							Total
+						</td>
+					
+						<td colspan="2" style="text-align: right;">
+						</td>
+					</tr>
+				</tfoot>
+			
+			</table>
+			<input type="submit" value="submit" />
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+	<script type="text/javascript">
+		function modeloCambiado(elem){
+			idModelo = elem.value;
+			idParent = $(elem).parents('tr').attr('id');
+		
+			$('#tallas_' + idParent).html('<option value="0">-----</option>');
+			$('#suelas_' + idParent).html('<option value="0">-----</option>');
+			$('#texturas_' + idParent).html('');
+	
+			$.ajax({
+			type: "GET",
+			data: {
+				data: 'pedido_ingresar',
+				id: idModelo
+			},
+			url: "/ajax/ajax",
+			success : function(msg)
+				{
+					$.each(msg, function(key, val){
+						if (val.tipo == "talla"){
+							$('#tallas_' + idParent).append('<option value=' + val.idTalla + '>' + val.valor + '</option>');
+						}else if (val.tipo == "suela"){
+							$('#suelas_' + idParent).append('<option value=' + val.idSuela + '>' + val.nombre + '</option>');
+						}else if (val.tipo == "region"){
+							$('#texturas_' + idParent).append('<div class="regionZapato">' +
+													'<div class="DescripcionRegion">' +
+														'Region ' + val.nombre + 
+													'</div>' +
+													'<div class="listaParametros">' +
+														'<ul>' +
+															'<li>' +
+																'Color:' +
+																	'<select id="colores" name="textura_' + val.idRegion + '_' + idParent + '">' +
+																		'<option value="0">-----</option>'+
+																		'{% for c in colores %}' +
+																		'<option value="{{ c.pk }}">' +
+																		'{{ c.nombre }}' +
+																		'</option>' +
+																		'{% endfor %}' +
+																	'</select>'+
+															'</li>' +
+										
+															'<li>' +
+																'Cuero:' +
+																	'<select id="cueros" name="textura_' + val.idRegion + '_' + idParent + '">' +
+																		'<option value="0">-----</option>' +
+																		'{% for c in cueros %}' +
+																		'<option value="{{ c.pk }}">' +
+																		'{{ c.nombre }}' +
+																		'</option>' +
+																		'{% endfor %}' +
+																	'</select>' +
+															'</li>' +
+														'</ul>' +
+													'</div>' +
+													'</div>'
+													);
+						}
+					});
+				},
+			error : function()
+				{
+					alert('error');
+				}
+			});
+		}
+		
+		function agregarNuevaFila(){
+			idUltimaFila = $('#tablaDeDetalles tr').last().attr('id');
+			idNuevaFila = (parseInt(idUltimaFila) + 1);		
+			codigo = '<tr id="' + (idNuevaFila) + '" style="height: 30px; vertical-align: middle; border-bottom: 1px solid #aaa;"><td style="border-right: 1px solid #aaa; vertical-align: middle;"><select name="modelos" onchange="modeloCambiado(this)"><option value="0">-----</option>{% for mods in modelos %}{% for m in mods %}{% if forloop.first %}<optgroup label="{{ m.categoria.nombre }}">{% endif %}<option class="modeloOption" value="{{ m.pk }}">{{ m }}</option>{% endfor %}</optgroup>{% endfor %}</select></td><td style="border-right: 1px solid #aaa; vertical-align: middle;"><select id="tallas_'+idNuevaFila+'" name="tallas"><option value="0">-----</option></select></td><td style="border-right: 1px solid #aaa; vertical-align: middle;"><select id="suelas_'+idNuevaFila+'" name="suelas"><option value="0">-----</option></select></td><td id="texturas_'+idNuevaFila+'" style="border-right: 1px solid #aaa; background-color: #ddd; width: 214px;"></td><td style="border-right: 1px solid #aaa; vertical-align: middle; width: 206px"><textarea style="max-width: 200px;"  maxlength="100" name="descripciones"></textarea></td><td style="border-right: 1px solid #aaa; vertical-align: middle;"><input id=cantidades_"' + idNuevaFila + '" name="cantidades" style="width: 60%; text-align:center;" onkeyup=\'$(this).val($(this).val().replace(/[^0-9]/g, ""))\' onblur=\'$(this).val($(this).val().replace(/[^0-9]/g, ""))\'/></td><td style="vertical-align: middle; background-color: #DDDDDD;"><div id="totalTabla_'+idNuevaFila+'"></div></td></tr>'
+			$('#tablaDeDetalles').append(codigo);
+		}
+	</script>
+{% endblock %}

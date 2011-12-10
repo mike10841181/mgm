@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=9, IE=8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="es" />
+        <meta name="description" content="" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/general.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jqueryLib/tipsy-0.1.7/tipsy.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fancyBoxLib/jquery.fancybox-1.3.4.css" media="screen" />
+        <script type="text/javascript" src="{{ STATIC_URL }}js/html5.js"></script>
+	</head>
+	<body style="text-align: center;">
+		<header>
+			<div class="innerHeader">
+				<h1 id="logoCalzadoGloria" style="margin-top: 30px;">
+					<a href="/">
+						<img src="{{ STATIC_URL }}images/logoHeader.png" alt="encabezado_logo.png"/>
+					</a>
+				</h1>
+			</div>
+		</header>
+		<section class="globalContainer">
+			<div class="innerContainer">
+				<div id="ContentPaneSubsites" class="contentPaneSubsites">
+					<div style="font-size:18pt; text-align:center; width: 100%; color: #776952; text-shadow: 0 1px 0 #000000;">Registro de Cliente</div>
+					<br/>
+					<div class="formRegistroPersonas">
+						<form enctype ="multipart/form-data" method="POST" action="">
+							{% csrf_token %}
+							{{ datosPersonalesForm.non_field_errors }}
+							<div class="leftSpace">
+								<div class="lines"></div>
+								<div class="title">Datos Personales</div>
+								<div class="lines"></div>
+								<br/>
+								<div class="formFields">
+									{{ datosPersonalesForm.primerNombre.errors }}
+									<label for="id_primerNombre">{{ datosPersonalesForm.primerNombre.label }}:</label>
+									{{ datosPersonalesForm.primerNombre }}<span class="fieldInformation" original-title="{{datosPersonalesForm.primerNombre.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosPersonalesForm.segundoNombre.errors }}
+									<label for="id_segundoNombre">{{ datosPersonalesForm.segundoNombre.label }}:</label>
+									{{ datosPersonalesForm.segundoNombre }}<span class="fieldInformation" original-title="{{datosPersonalesForm.segundoNombre.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosPersonalesForm.primerApellido.errors }}
+									<label for="id_primerApellido">{{ datosPersonalesForm.primerApellido.label }}:</label>
+									{{ datosPersonalesForm.primerApellido }}<span class="fieldInformation" original-title="{{datosPersonalesForm.primerApellido.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosPersonalesForm.segundoApellido.errors }}
+									<label for="id_segundoApellido">{{ datosPersonalesForm.segundoApellido.label }}:</label>
+									{{ datosPersonalesForm.segundoApellido }}<span class="fieldInformation" original-title="{{datosPersonalesForm.segundoApellido.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosPersonalesForm.numeroDeIdentidad.errors }}
+									<label for="id_numeroDeIdentidad">{{ datosPersonalesForm.numeroDeIdentidad.label }}:</label>
+									{{ datosPersonalesForm.numeroDeIdentidad }}<span class="fieldInformation" original-title="{{datosPersonalesForm.numeroDeIdentidad.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosPersonalesForm.direccion.errors }}
+									<label for="id_direccion">Direcci&oacute;n:</label>
+									<span style="display: none;">{{ datosPersonalesForm.direccion }}</span>
+									<textarea id="campoDeIdDireccion"  COLS=40 ROWS=2 onkeyup="$('#id_direccion').attr('value', $(this).val())"  maxlength="100"></textarea>
+									<span class="fieldInformation" original-title="{{datosPersonalesForm.direccion.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosPersonalesForm.telefonoFijo.errors }}
+									<label for="id_telefonoFijo">Tel&eacute;fono fijo:</label>
+									{{ datosPersonalesForm.telefonoFijo }}<span class="fieldInformation" original-title="{{datosPersonalesForm.telefonoFijo.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosPersonalesForm.telefonoMovil.errors }}
+									<label for="id_telefonoMovil">Tel&eacute;fono m&oacute;vil:</label>
+									{{ datosPersonalesForm.telefonoMovil }}<span class="fieldInformation" original-title="{{datosPersonalesForm.telefonoMovil.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosPersonalesForm.correoElectronico.errors }}
+									<label for="id_correoElectronico">Correo electr&oacute;nico:</label>
+									{{ datosPersonalesForm.correoElectronico }}<span class="fieldInformation" original-title="{{datosPersonalesForm.correoElectronico.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<br/>
+								<div class="lines"></div>
+								<div class="title">Datos de Usuario</div>
+								<div class="lines"></div>
+								<br/>
+								<div class="formFields">
+									{{ datosDeUsuarioForm.nombreDeUsuario.errors }}
+									<label for="id_nombreDeUsuario">Nombre de usuario:</label>
+									{{ datosDeUsuarioForm.nombreDeUsuario }}<span class="fieldInformation" original-title="{{datosDeUsuarioForm.nombreDeUsuario.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+								</div>
+								<div class="formFields">
+									{{ datosDeUsuarioForm.contrasena.errors }}
+									<label for="id_contrasena">Contrase&ntilde;a:</label>
+									{{ datosDeUsuarioForm.contrasena }}
+								</div>
+								<div class="formFields">
+									{{ datosDeUsuarioForm.contrasena2.errors }}
+									<label for="id_contrasena2">Confirmar contrase&ntilde;a:</label>
+									{{ datosDeUsuarioForm.contrasena2 }}
+								</div>
+							</div>
+							<div class="rightSpace" style="margin-top: 6px;">
+								<div class="formFields">
+									<label for="id_imagen">Imagen de perfil:</label>
+									{{ datosPersonalesForm.imagen.errors }}
+									<div class="personImage" style="margin-top: 6px;">
+										<img id="imagenDePerfilCliente" src="" width="340" height="340"/>
+									</div>
+									<div style="text-align: center;">
+										<div style="font-size: 8pt;height: 14px;max-width: 356px;overflow: hidden;">
+											<span id="urlImagenSubida">Aun no has agregado tu imagen</span>
+										</div>
+										<span class="buttons greenButton" style="margin-top: 5px; opacity: 1.0;" onClick="$('#id_imagen').trigger('click')" onmouseout="ponerImagenPerfil()">
+											<a><i class="cameraIcon"></i>Buscar imagen</a>
+										</span>
+									</div>
+									<span style="display: none;">{{ datosPersonalesForm.imagen }}</span>
+								</div>
+							</div>
+							<div class="optionsPane">
+								<span class="buttons greenButton" onclick='javascript:location.href="/"'>
+									<a><i class="goBackIcon"></i>Ir a p&aacute;gina principal</a>
+								</span>
+								<span class="buttons greenButton" onclick='javascript:history.go(-1)'>
+									<a><i class="goBackIcon"></i>Regresar a p&aacute;gina</a>
+								</span>
+								<span class="buttons blueButton" onclick="$('#submitRegistrarCliente').trigger('click')">
+									<a><i class="userIcon"></i>Enviar solicitud de registro</a>
+								</span>
+								<input id="submitRegistrarCliente" type="submit" value="Guardar Cliente" style="display: none;"/>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>		
+		<footer>			
+		</footer>
+	</body>
+	<script type="text/javascript" src="{{ STATIC_URL }}jqueryLib/jquery-1.6.2.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}jqueryLib/easing-1.3.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}jqueryLib/tipsy-0.1.7/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/calzadoGloriaJs.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}fancyBoxLib/jquery.mousewheel-3.0.4.pack.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}fancyBoxLib/jquery.fancybox-1.3.4.pack.js"></script>
+	<script type="text/javascript">
+		function ponerImagenPerfil()
+		{
+			$('#imagenDePerfilCliente').attr('src',$('#id_imagen').attr('value'));
+			$('#urlImagenSubida').html($('#id_imagen').attr('value'));
+		}
+	</script>
+</html>

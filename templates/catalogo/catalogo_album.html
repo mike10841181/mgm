@@ -1,0 +1,48 @@
+<div id="CatalogPanel" class="catalogPane">
+    <div class="letterPaging" style="text-align: left;">
+        <label style="font-size: 18pt;">Familias de modelo - 
+            <select onchange="filtrarPorFamiliaDeModelo(this.value)">
+                <option value="fam_0">Todos</option>
+                {% for f in familias %}
+					<option value="fam_{{ f.idFamiliaDeModelo }}">{{ f.nombre }}</option>
+				{% endfor %}
+            </select>
+        </label>
+    </div>
+    <br/>
+    <div>
+        <ul id="ListaDeModelos">
+			{% for m in modelos %}
+				<li idFamilia="fam_{{ m.familia.idFamiliaDeModelo }}">
+					<label>{{ m }}</label>
+					<a name="fancyCatalogModelsPreview" href="/catalogo/catalogo_fancyDetalles/{{ m.pk }}" rel="{{ m.familia.nombre }}" title="Modelo - {{m}}">
+						<img name="thumbsCatalogo" src="{{ m.imagen.url }}" alt="imagen" width="200"/>
+					</a> 
+				</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<style type="text/css">
+	#fancybox-left, #fancybox-right 
+	{
+		height: 50%;
+		bottom: 160px;
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$('[name="thumbsCatalogo"]').thumbs();
+		$('[name="fancyCatalogModelsPreview"]').fancybox({
+			'overlayShow'	: true,
+			'transitionIn'	: 'elastic',
+			'transitionOut'	: 'elastic',
+			'padding'           : '4',
+			'centerOnScroll'    : true,
+			'overlayColor'      : '#000',
+			'cyclic'		: true,
+			'titlePosition'	: 'inside'
+		});
+	});
+</script>

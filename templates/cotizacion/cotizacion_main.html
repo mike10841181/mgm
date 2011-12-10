@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+			
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+	<div class="headerSubsites">
+		<div class="subsiteIcon">
+			<img src="{{ STATIC_URL }}icons/clientAdmonIcon.png"/>
+		</div>
+		<div class="subsiteDescrOptions">
+			<div class="title">COTIZACIONES</div>
+			<div id="submenuCotizacion" class="subSiteMenu">
+				<span id="submenuCotizacion_3" class="selectedSubmenu" onclick="selectSubmenu(this.id)">Consultar</span>
+				<span id="submenuCotizacion_1" class="" onclick="selectSubmenu(this.id)">Ingresar</span>
+				<span id="submenuCotizacion_2" class="" onclick="selectSubmenu(this.id)">Modificar</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="ContentPaneSubsites" class="contentPaneSubsites">
+	</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+{% endblock %}

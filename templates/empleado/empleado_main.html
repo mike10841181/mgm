@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+	<div class="headerSubsites">
+		<div class="subsiteIcon">
+			<img src="{{ STATIC_URL }}icons/clientAdmonIcon.png"/>
+		</div>
+		<div class="subsiteDescrOptions">
+			<div class="title">ADMINISTRACI&Oacute;N DE EMPLEADOS</div>
+			<div id="submenuEmpleado" class="subSiteMenu">
+				<span id="submenuEmpleado_1" class="selectedSubmenu">Ver Perfiles</span>
+				<a href="nuevo/"><span id="submenuEmpleado_2" class="">Registrar Nuevo</span></a>
+				<a href="modificar/"><span id="submenuEmpleado_3" class="">Modificar Perfil</span></a>
+				<a href="activarDesactivar/"><span id="submenuEmpleado_4" class="">Activar / Desactivar</span></a>
+			</div>
+		</div>
+	</div>
+	
+	<div id="ContentPaneSubsites" class="contentPaneSubsites">
+		<div class="searchClientPanel">
+			<div class="title">Panel de Búsquedas</div>
+			<div class="searchBox">
+				<span>Buscar&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+				<input id="BuscadorDeEmpleados" onkeyup='filtroDeEmpleados(this.value, $(":checked").val() )' type="text"/>
+			</div>
+			<div class="clientTypeCheckBoxs">
+				Incluir en Busqueda :
+				<label>
+					<input value="tEm_0" type="radio" name="tipoDeEmpleado" checked="checked" onclick='filtroDeEmpleados($("#BuscadorDeEmpleados").val(), this.value)'/>Todos
+				</label>				
+				{% for t in tipos %}
+				|
+				<label>
+					<input value="tEm_{{ t.idTipoDeEmpleado }}" type="radio" name="tipoDeEmpleado" onclick='filtroDeEmpleados($("#BuscadorDeEmpleados").val(), this.value)'/>{{ t.nombre }}
+				</label>
+				{% endfor %}
+			</div>
+		</div>
+		
+		<div class="clientListSection">
+			<div class="labelTitle">
+				Resultados de Busqueda
+			</div>
+			
+			<div class="content">
+				<ul id="listaClientes">
+					{% for e in empleados %}
+					<li idTipoDeEmpleado="tEm_{{ e.tipoDeEmpleado.idTipoDeEmpleado }}" primerNombre="{{ e.primerNombre }}" segundoNombre="{{ e.segundoNombre }}" primerApellido="{{ e.primerApellido }}" segundoApellido="{{ e.primerApellido }}">
+						<div class="fotoPane">
+							<img src="{{ e.imagen.url }}" width="50" height="50"/>
+						</div>
+						<div class="descriptionPane">
+							<div><label>Nombre de Empleado : </label><span>{{ e.primerNombre }} {{ e.primerApellido }}</span></div>
+							<div class="lastItem">
+								<label>Tipo de Empleado : </label><span>{{ e.tipoDeEmpleado.nombre }}</span>
+							</div>
+						</div>
+						<div class="optionsPane" style="text-align: center;">
+							<span id="idEmpleado_{{ e.pk }}" class="buttons greenButton" style="margin-top: 5px;" onclick="mostrarPerfil(this.id)">
+								<a><i class="contactIcon"></i>Ver Perfil</a>
+							</span>
+						</div>
+					</li>
+					<li class="division"></li>
+					{% endfor %}  
+				</ul>
+			</div>                
+		</div>
+		
+		<div id="ClientProfileViewPane" class="clientProfileViewPane" style="display: none;">
+		</div>
+	</div>	
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+<script type="text/javascript">
+	function mostrarPerfil(idEmpleado){
+		idEmpleado = idEmpleado.split('_')[1];
+		codigo = '<div class="title">Perfil del empleado con usuario: "<span id="usuarioDeEmpleado"></span>"' +
+				'<div class="closeIcon" onclick="ClientProfileViewPaneDisplay(0)">' +
+				'<img src="{{ STATIC_URL }}icons/close_icon_med.png" onmouseout="$(this).animate({\'opacity\' : \'0.5\'})" onmouseover="$(this).animate({\'opacity\' : \'1.0\'})"/></div></div>' +
+				'<div class="profileContent">' +
+					'<table cellspacing="0" cellpadding="0">' +
+						'<tr>' +
+							'<td style="width: 30%;">' +
+								'Imagen del Empleado' +
+								'<div class="clientPictureZone">' +
+									'<img id="imagenDeEmpleado" src="" width="220" height="220"/>' +
+								'</div>' +
+							'</td>' +
+							'<td>' +
+								'<div style="text-align: left;">' +
+									'<div>' +
+										'Nombre del Empleado :' +
+										'<div id="nombreDeEmpleado" class="txtBoxs" style="height: 26px; width: 96%;"></div>' +
+									'</div>' +
+									'<div>' +
+										'Dirección :' +
+										'<div id="direccionDeEmpleado" class="txtBoxs" style="height: 64px; width: 96%;"></div>' +
+									'</div>' +
+									'<div style="float: left;">' +
+										'Tipo de Empleado :' +
+										'<div id="tipoDeEmpleado"  class="txtBoxs" style="height: 26px; width: 160px;"></div>' +
+									'</div>' +
+									'<div style="float: left; margin-left: 16px;">' +
+										'Tel&eacute;fono Fijo :' +
+										'<div id="telefonoFijoDeEmpleado" class="txtBoxs" style="height: 26px; width: 114px;"></div>' +
+									'</div>' +
+									'<div style="float: left; margin-left: 16px;">' +
+										'Tel&eacute;fono M&oacute;vil :' +
+										'<div id="telefonoMovilDeEmpleado" class="txtBoxs" style="height: 26px; width: 113px;"></div>' +
+									'</div>' +
+									'<div style="float: left; margin-left: 16px;">' +
+										'Departamento :' +
+										'<div id="areaDepartamento" class="txtBoxs" style="height: 26px; width: 160px;"></div>' +
+									'</div>' +
+									'<div style="float: left;">' +
+										'Correo Electr&oacute;nico :' +
+										'<div id="correoElectronicoDeEmpleado" class="txtBoxs" style="height: 26px; width: auto;"></div>' +
+									'</div>' +
+								'</div>' +
+							'</td>' +
+						'</tr>' +
+					'</table>' +
+					'<div style="height: 40px; margin-right: 26px;">' +
+						'<span id="modificarPerfilDeEmpleado" class="buttons blueButton" style="margin-top: 5px; float:right;">' +
+							'<a>' +
+								'<i class="modificationIcon"></i>' +
+								'Modificar Perfil' +
+							'</a>' +
+						'</span>' +
+					'</div>' +
+				'</div>';
+		
+		{% for e in empleados %}
+		if ( idEmpleado == '{{ e.pk }}' ){
+			$('#ClientProfileViewPane').html(codigo);
+			$('#usuarioDeEmpleado').html('{{ e.usuario.username }}');
+			$('#imagenDeEmpleado').attr('src', '{{ e.imagen.url }}');
+			var nombreCompleto = '{{ e.primerNombre }} {{ e.segundoNombre }} {{ e.primerApellido }} {{ e.segundoApellido }}'
+			nombreCompleto = nombreCompleto.replace(/N\/A/ig, "");
+			nombreCompleto = nombreCompleto.replace("  ", " ");
+			$('#nombreDeEmpleado').html(nombreCompleto);
+			$('#direccionDeEmpleado').html('{{ e.direccion }}');
+			$('#tipoDeEmpleado').html('{{ e.tipoDeEmpleado }}');
+			$('#telefonoFijoDeEmpleado').html('{{ e.telefonoFijo }}');
+			$('#telefonoMovilDeEmpleado').html('{{ e.telefonoMovil }}');
+			$('#areaDepartamento').html('{{ e.tipoDeEmpleado.areaDepartamento }}');
+			$('#correoElectronicoDeEmpleado').html('{{ e.correoElectronico }}');
+			$('#modificarPerfilDeEmpleado').attr('onclick', 'javascript:location.href=\'modificar/{{ e.usuario.username }}\'');
+			ClientProfileViewPaneDisplay(1);
+			$('html, body').animate({
+				scrollTop:1000
+			}, 'slow');
+		}
+		{% endfor %}
+	}
+</script>
+{% endblock %}

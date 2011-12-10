@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+	
+{% block contenido %}
+	{% for modelo in modelos %}
+		<div>
+			<span>
+				<img src ='{{ modelo.imagen.url }}' alt = '{{ modelo.imagen.url }}'></img>
+			</span>
+			<span>
+				<p>{{ modelo.nombre }}</p>
+			</span>
+		<div>
+	{% endfor %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+{% endblock %}

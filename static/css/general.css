@@ -1,0 +1,1681 @@
+body
+{
+    background-image: url('../images/leatherBg.jpg');
+    background-attachment: scroll;
+    background-repeat: repeat-x;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+    background-color: #101010;
+    font: 11px tahoma,arial,sans-serif;
+    color: #333333;
+    text-align: left;
+    line-height: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    unicode-bidi: embed;
+    direction: ltr;
+    font-size-adjust: none;
+    font-stretch: normal;
+    overflow-y: scroll;
+}
+header
+{
+    margin: 0 auto;
+    min-width: 960px;
+    min-height: 170px;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+}
+/*header .loginbutton
+{
+    text-align: right;
+    width: 100%;
+}
+header .loginbutton input
+{
+    border: 0 none;
+}*/
+header div.innerHeader
+{
+    width: 960px;
+    height: auto;
+    margin: 0 auto;
+    color: #c1ae8e;
+}
+header div.innerHeader h1
+{
+    position: relative;
+    top: -22px;    
+    width: 273px;
+    height: 132px;
+}
+#logoCalzadoGloria a
+{
+    display: none;
+}
+header div.innerHeader .loginSpace
+{
+    width: 100%;
+    text-align: right;
+    color: #c1ae8e;
+    font-size: 11pt;
+
+}
+.myPofMinDetails
+{
+	background: url("../images/panelsBg.png") repeat scroll 0 0 #2A2C2F;
+    border: 1px solid #999999;
+    box-shadow: 6px 6px 6px #000000;
+    color: #776952;
+    float: right;
+    font-size: 9pt;
+    min-width: 210px;
+	width: auto;
+    padding: 6px;
+    position: absolute;
+    right: 200px;
+    text-shadow: 0 1px 0 #000000;
+    top: 40px;
+    z-index: 100;
+	display:none;
+	min-height: 36px;
+}
+.myPofMinDetails .usrProfImage, .myPofMinDetails .usrProfContDescrp
+{
+	float: left;
+}
+.myPofMinDetails .usrProfImage
+{
+	border: 2px solid #fff;
+	box-shadow: 0px 0px 6px #000;
+}
+.myPofMinDetails .usrProfContDescrp
+{
+	padding-left: 9px;
+}
+.myPofMinDetails .usrProfContDescrp a
+{
+	color: #999999;
+    position: relative;
+    text-decoration: none;
+    top: 20px;
+}
+.myPofMinDetails .usrProfContDescrp a:hover
+{
+	color: #ccc;
+	text-decoration: underline;
+}
+header div.innerHeader .loginSpace .loginButton
+{
+    background: url("../images/btnLeather_Bg.png") repeat-x scroll 0 -27px transparent;
+    border: 1px solid #303030;
+    border-bottom: 0 none;
+    height: 34px;
+    /*width: 180px;*/
+    width: auto;
+    padding: 0px 8px;
+    cursor: pointer; 
+    color: #c1ae8e;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 0 4px 8px #000000;
+}
+header div.innerHeader .loginSpace .loginButton i
+{
+    background: url("../icons/padlock_closed.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 15px;
+    margin-right: 5px;
+    margin-top: 4px;
+    vertical-align: top;
+    width: 12px;
+}
+header div.innerHeader .loginSpace .loginButton .link
+{
+	color: inherit;
+	text-decoration: none;
+	font-weight: bold;
+}
+header div.innerHeader .loginSpace .loginButton .link:hover
+{
+	text-decoration: underline;
+	text-shadow: 2px 2px 0px #000;
+	color: #fff;
+}
+header div.innerHeader .menu
+{
+    bottom: 50px;
+    float: right;
+    font-size: 14pt;
+    position: relative;
+}
+header div.innerHeader .menu ul
+{
+
+}
+header div.innerHeader .menu ul li
+{
+    float: left;
+    padding: 12px;
+    border-right: 1px dashed #3c3c3c;
+    width: auto;
+    box-shadow: 1px 0 0 #000000;
+}
+header div.innerHeader .menu ul li a
+{
+    text-decoration: none;
+    color: #c1ae8e;
+}
+header div.innerHeader .menu ul li a:hover
+{
+    text-shadow: 2px 2px 0px #000;
+    color: #ccc;
+}
+.globalContainer
+{
+    color: #c1ae8e;
+    background-color: transparent;
+    margin: 32px auto 0;
+    min-width: 960px;
+    min-height: 400px;
+    width: auto;
+    height: auto; 
+    vertical-align: top;
+}
+.globalContainer .innerContainer
+{
+    width: 960px;
+    height: auto;
+    margin: 0 auto;
+    text-align: left;
+    background-color: transparent;
+}
+div.clientFancyProfilePreview
+{
+	background: url("../images/panelsBg.png") repeat scroll 0 0 #2A2C2F;
+    color: #C1AE8E;
+    height: auto;
+    width: 480px;
+	min-height: 210px;
+	overflow: auto;
+}
+div.clientFancyProfilePreview .title
+{
+	padding-top: 6px;
+	padding-bottom: 6px;
+	border-bottom: 1px solid #000;
+	font-size: 12pt;
+	text-indent: 12px;
+	color: #776952;
+    text-shadow: 0 1px 0 #000;
+}
+div.clientFancyProfilePreview  .content
+{
+	border-top: 1px solid #505355;
+    overflow: auto;
+    padding: 14px;
+}
+div.clientFancyProfilePreview  .content .leftPane
+{
+	float: left;
+	overflow: hidden;
+}
+div.clientFancyProfilePreview  .content .rightPane
+{
+	float: right;
+	overflow: hidden;
+}
+div.clientFancyProfilePreview  .content .imageSpace
+{
+	border: 4px solid #fff;
+	width: 150px;
+	height: 150px;
+	background-color: #ccc;
+}
+div.clientFancyProfilePreview  .content .formFields
+{
+	padding-bottom: 8px;
+}
+div.clientFancyProfilePreview  .content .formFields span
+{
+	background-color: #F1F1F1;
+    border: 1px solid #000000;
+    color: #333333;
+    display: inline-block;
+    font-size: 10pt;
+    padding: 4px 2px;
+    text-align: left;
+    text-indent: 4px;
+    width: 270px;
+	height: auto;
+}
+div.clientFancyProfilePreview  .content .formFields span .subDescr
+{
+	font-style: italic;
+	border: none;
+	width: auto;
+	height: auto;
+	padding: none;
+	text-indent: 0;
+	color: #777;
+}
+div.clientFancyProfilePreview  .content .clientMoreDetails
+{
+	padding-top : 6px;
+	max-width: 176px;
+}
+div.clientFancyProfilePreview  .content .clientMoreDetails .titleMoreDetails
+{
+	padding-bottom: 3px;
+	border-bottom: 1px solid #505355;
+	text-shadow: 0 1px 0 #000000;
+	color: #776952;
+	font-size: 10pt;
+}
+div.loginFormFancy
+{
+    background: url("../images/panelsBg.png") repeat scroll 0 0 #2A2C2F;
+    box-shadow: 0 0 20px #000000;
+    color: #C1AE8E;
+    display: inline-block;
+    height: auto;
+    margin-top: 6px;
+    padding: 10px 1px;
+    width: 480px;
+}
+div.loginFormFancy .title
+{
+    border-bottom: 1px solid #000000;
+    color: #C1AE8E;
+    font-size: 18pt;
+    padding: 10px;
+    text-align: right;
+    text-shadow: 1px 1px 0 #000000;
+}
+div.loginFormFancy .content
+{
+    border-top: 1px solid #444648;
+    border-bottom: 1px solid #000;
+    padding-bottom: 18px;
+    padding-top: 18px;
+}
+div.loginFormFancy .content .tableLogin
+{
+    width: 100%;
+    text-align: center;
+}
+div.loginFormFancy .content .tableLogin tr
+{
+    height: 48px;
+    vertical-align: middle;
+}
+div.loginFormFancy .content .tableLogin tr td
+{
+    font-size: 11pt;
+    text-shadow: 1px 1px 0 #000000;
+    vertical-align: middle;
+}
+div.loginFormFancy .content .tableLogin tr th
+{
+    font-size: 12pt;
+    text-align: right;
+    text-shadow: 1px 1px 0 #000000;
+    vertical-align: middle;
+}
+div.loginFormFancy .content .tableLogin tr td input
+{
+    background-color: #DCCCB1;
+    border: 1px solid #000000;
+    color: #605747;
+    font-size: 16px;
+    margin-left: 42px;
+    padding: 6px;
+    text-align: left;
+    width: 240px;
+}
+div.loginFormFancy .content a
+{
+    bottom: 4px;
+    color: #AAAAAA;
+    float: right;
+    font-size: 8pt;
+    position: relative;
+    right: 12px;
+    text-decoration: none;
+    text-shadow: 0 none;
+    padding-top: 4px;
+    cursor: pointer;
+}
+div.loginFormFancy .content a:hover
+{
+    text-decoration: underline;
+    text-shadow: 0px 1px 0px #000;
+}
+div.loginFormFancy .optionsPane
+{
+    text-align: right;
+    border-top: 1px solid #444648;
+    padding-right: 48px;
+    padding-top: 6px;
+}
+div.loginFormFancy .optionsPane label
+{
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: normal;
+    padding: 2px 6px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;   
+    background: url("../images/btnsBg.png") no-repeat scroll 0px -98px #5B74A8;
+    border: 1px solid #174e6c;
+}
+div.loginFormFancy .optionsPane label input
+{
+    color: #fff;
+    background: none;
+    border: 0 none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    outline: medium none;
+    padding: 1px 0 2px;
+    white-space: nowrap;
+    width: 80px;
+}
+div.catalog_fancyPreviewDetails
+{
+	height: auto;
+	width: auto;
+	font-size: 10pt;
+	color: #333;
+	font-family: Tahoma;
+}
+div.catalog_fancyPreviewDetails .contentFancy
+{
+	background: url("../images/panelsBg.png") repeat scroll 0 0 #2a2c2f;
+	height: auto;
+	padding: 4px;
+	overflow: hidden;
+}
+div.catalog_fancyPreviewDetails .contentFancy .title
+{
+	border-bottom: 1px solid #000000;
+    color: #776952;
+    font-size: 12pt;
+    padding-bottom: 4px;
+    text-indent: 4px;
+    text-shadow: 0 1px 0 #000000;
+	text-align: right;
+}
+div.catalog_fancyPreviewDetails .contentFancy .details
+{
+	border-top: 1px solid #505355;
+    color: #AAAAAA;
+    padding: 4px;
+}
+div.catalog_fancyPreviewDetails .contentFancy .details .items .labelDsrc
+{
+    display: inline-block;
+    padding: 4px 2px;
+    text-align: left;
+    width: 150px;
+}
+div.catalog_fancyPreviewDetails .contentFancy .details .items .descr
+{
+	background-color: #F1F1F1;
+    border: 1px solid #000000;
+    color: #333333;
+    display: inline-block;
+    font-size: 11pt;
+    height: auto;
+    padding: 4px 2px;
+    text-align: left;
+    text-indent: 4px;
+    width: 324px;
+}
+div.catalog_fancyPreviewDetails .contentFancy .optionsPane
+{
+	background: transparent;
+	border: 1px solid #aaa;
+	padding: 4px;
+	text-align: right;
+	margin: 4px;
+}
+.globalContainer .innerContainer .headerSubsites
+{
+    border-bottom: 1px dashed #888888;
+    height: 90px;
+    overflow: auto;
+    width: 100%;
+}
+.globalContainer .innerContainer .headerSubsites .subsiteIcon
+{
+    border-right: 4px solid #776952;
+    width: 80px;
+    float: left;
+}
+.globalContainer .innerContainer .headerSubsites .subsiteDescrOptions
+{
+    float: left;
+    margin-left: 16px;
+}
+.globalContainer .innerContainer .headerSubsites .subsiteDescrOptions .title
+{
+    font-size: 18pt;    
+}
+.globalContainer .innerContainer .headerSubsites .subsiteDescrOptions .subSiteMenu
+{
+    color: #C1AE8E;
+    padding: 11px 0;
+    vertical-align: middle;
+}
+.globalContainer .innerContainer .headerSubsites .subsiteDescrOptions .subSiteMenu .selectedSubmenu
+{
+    background: url("../images/panelsBg.png") no-repeat scroll 0 0 #2C2E31;
+    border: 1px solid #888888;
+    box-shadow: 3px 4px 2px #000000;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12pt;
+    margin-left: 10px;
+    padding: 6px 12px;
+    text-shadow: 0 1px 0 #000000;
+}
+.globalContainer .innerContainer .headerSubsites .subsiteDescrOptions .subSiteMenu a
+{
+	text-decoration: none;
+	color: inherit;
+}
+.globalContainer .innerContainer .headerSubsites .subsiteDescrOptions .subSiteMenu span
+{
+    background-color: #776952;
+    border: 1px solid #C1AE8E;
+    display: inline-block;
+    font-size: 12pt;
+    margin-left: 10px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.globalContainer .innerContainer .headerSubsites .subsiteDescrOptions .subSiteMenu span:hover
+{
+    box-shadow: 2px 3px 3px #000000;
+    text-shadow: 0px 1px 0px #333333;
+}
+.globalContainer .innerContainer .contentPaneSubsites
+{
+    margin-top: 18px;
+    background: url("../images/panelsBg.png") repeat scroll 0 0 #2a2c2f;
+    border: 1px solid #888888;
+    padding: 20px;
+    min-height: 300px;
+    overflow: auto;
+}
+.globalContainer .innerContainer .contentPaneSubsites .catalogPane
+{
+    color: #aaa;
+    text-shadow: 0px 1px 0px #000;
+    padding: 16px;
+    height: 130px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .catalogPane label select
+{
+	background-color: #776952;
+	border: 1px solid #B5A486;
+	color: #FAEEDA;
+	font-size: 16pt;
+	height: 36px;
+	padding: 4px 8px;
+	text-align: left;
+}
+.globalContainer .innerContainer .contentPaneSubsites .catalogPane li
+{
+    border: 1px solid #5a5a5a;
+    box-shadow: 1px 1px 6px #000000;
+    height: 128px;
+    width: 128px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-bottom: 20px;
+    float: left;
+    background: url("../images/boxesBg.png") no-repeat scroll 0 -10px #2a2c2f;
+
+}
+.globalContainer .innerContainer .contentPaneSubsites .catalogPane li label
+{
+	text-align: center;
+	width: 100%;
+	margin-top: 2px;
+	display: inline-block;
+}
+.globalContainer .innerContainer .contentPaneSubsites .catalogPane li a
+{
+    text-decoration: none;
+    color: inherit;
+}
+/*.globalContainer .innerContainer .contentPaneSubsites .catalogPane li a img
+{
+    left: 22px;
+    position: relative;
+    top: 10px;
+}*/
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas
+{
+	font-size: 11pt;
+	overflow: auto;
+	height: auto;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .leftSpace
+{
+	width: 530px;
+	overflow: auto;
+	float: left;
+	min-height: 620px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .rightSpace
+{
+	width: 360px;
+	overflow: auto;
+	float: right;
+	min-height: 620px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .title
+{
+    color: #776952;
+    font-size: 10pt;
+    text-shadow: 0 1px 0 #000000;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .lines
+{
+	border-bottom: 1px solid #505355;
+	border-top: 1px solid #000;
+	margin-bottom:4px;
+	margin-top:4px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields
+{
+	margin-bottom: 4px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields .errorlist
+{
+	 text-align: right;
+    width: 96%;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields label
+{
+	color: #FAEEDA;
+    text-shadow: 0 1px 0 #000000;
+	width: 160px;
+	display: inline-block;
+	vertical-align: top;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields input[type="text"], .globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields input[type="password"]
+{
+	background-color: #F1F1F1;
+    border: 1px solid #000000;
+    color: #333333;
+    font-size: 12pt;
+    padding: 4px 2px;
+    text-align: left;
+	text-indent: 4px;
+	width: 340px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields input[name="direccion"]
+{
+	background-color: #F1F1F1;
+    border: 1px solid #000000;
+    color: #333333;
+    font-size: 12pt;
+    padding: 4px 2px;
+    text-align: left;
+	text-indent: 4px;
+	width: 340px;
+	height: 60px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields select
+{
+	background-color: #F1F1F1;
+    border: 1px solid #000000;
+    color: #333333;
+    padding: 5px;
+    text-align: left;
+    width: 320px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields textarea
+{
+	background-color: #F1F1F1;
+    border: 1px solid #000000;
+    color: #333333;
+    font-size: 9pt;
+    padding: 4px 2px;
+    text-align: left;
+	text-indent: 4px;
+	width: 340px;
+	resize: vertical;
+	max-height: 60px;
+	min-height: 30px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields .fieldInformation
+{
+	background-image: url('../icons/information-balloon.png');
+	height: 16px;
+	width: 16px;
+	position: relative;
+	float:right;
+	opacity: 0.3;
+	cursor: information;
+	right: 22px;
+    top: 11px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .formFields .fieldInformation:hover
+{
+	opacity: 1.0;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .personImage
+{
+	background-color: #F1F1F1;
+    border: 1px solid #000000;
+    display: inline-block;
+    height: 340px;
+    width: 340px;
+	border: 8px solid #fff;
+}
+.globalContainer .innerContainer .contentPaneSubsites .formRegistroPersonas .optionsPane
+{
+	border: 1px solid #444444;
+    float: left;
+    height: auto;
+    padding: 10px;
+    text-align: right;
+    width: 97%;
+}
+.fancyProductDescription
+{
+    height: auto;
+    width: auto;
+}
+.fancyProductDescription .imageSpace
+{
+    text-align: center;
+    vertical-align: middle;
+}
+.fancyProductDescription .descriptionContent
+{
+    background-color: #F1F1F1;
+    border: 1px solid #AAAAAA;
+    margin-bottom: 6px;
+    margin-top: 10px;
+    max-width: 512px;
+    min-width: 256px;
+    width: 100%;
+}
+.fancyProductDescription .descriptionContent .title
+{
+    border-bottom: 1px solid #aaa;
+    color: #444444;
+    font-size: 16pt;
+    font-weight: normal;
+    padding-bottom: 6px;
+    padding-right: 10px;
+    padding-top: 6px;
+    text-align: right;
+    text-shadow: 0 1px 0 #fff;
+    width: auto;
+}
+.fancyProductDescription .descriptionContent .content
+{
+    border-top: 1px solid #fff;
+    padding: 6px;
+}
+.fancyProductDescription .descriptionContent .content .items
+{
+    color: #333333;
+    font-size: 9pt;
+    overflow: auto;
+    text-decoration: none;
+    width: 100%;
+    padding-bottom: 10px;
+}
+.fancyProductDescription .descriptionContent .content .items .label
+{
+    color: #666666;
+    float: left;
+    font-weight: bold;
+    position: relative;
+    top: 4px;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+.fancyProductDescription .descriptionContent .content .items .label img
+{
+    margin-right: 6px;
+    position: relative;
+    top: 1px;
+}
+.fancyProductDescription .descriptionContent .content .items .textBox
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    color: #333333;
+    float: left;
+    padding: 4px;
+    text-align: justify;
+    margin-left: 6px;
+}
+.fancyProductDescription .descriptionContent .content .items .textBox select
+{
+    border: 0 none;
+    width: 100%;
+}
+.fancyProductDescription .optionsPane
+{
+    background-color: #fff;
+    padding: 4px;
+    text-align: right;
+}
+.fancyProductDescription .optionsPane .buttons
+{
+    background: url("../images/btnsBg.png") no-repeat scroll 0 -98px #5B74A8;
+    border: 1px solid #174E6C;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: normal;
+    padding: 2px 6px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+}
+.fancyProductDescription .optionsPane .buttons a
+{
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    outline: medium none;
+    padding: 1px 0 2px;
+    white-space: nowrap;
+    width: auto;
+    color: #fff;
+    text-decoration: none;
+}
+.fancyProductDescription .optionsPane .buttons a li
+{
+    display: inline-block;
+    height: 16px;
+    margin-right: 5px;
+    margin-top: 2px;
+    vertical-align: top;
+    width: 16px;
+}
+.btnAddToOrder
+{
+    background: url("../icons/addToOrder.png") no-repeat scroll 0 0 transparent;
+}
+.btnAddToCot
+{
+    background: url("../icons/addToCot.png") no-repeat scroll 0 0 transparent;
+}
+.globalContainer .innerContainer .contentPaneSubsites .registerClientPane
+{
+    color: #faeeda;
+    font-size: 12pt;
+}
+.globalContainer .innerContainer .contentPaneSubsites .registerClientPane .tableRegisterClient
+{
+    color: #faeeda;
+    font-size: 12pt;    
+    border: 0 none;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .registerClientPane .tableRegisterClient .labels
+{
+    color: #faeeda;
+    font-size: 10pt;
+    text-shadow: 0px 1px 0px #000;
+    float: left;
+
+}
+.globalContainer .innerContainer .contentPaneSubsites .registerClientPane .tableRegisterClient .textAreaReg
+{
+    resize: vertical;
+    max-height: 128px;
+    font-family: Tahoma, Arial;
+    font-size: 12pt;
+}
+.globalContainer .innerContainer .contentPaneSubsites .registerClientPane .tableRegisterClient .registerPicture
+{
+    background-color: #f1f1f1;
+    border: 1px solid #000;
+    height: 300px;
+    width: 256px;
+    display: inline-block;
+}
+.globalContainer .innerContainer .contentPaneSubsites .registerClientPane .inputTextBoxs
+{
+    background-color: #F1F1F1;
+    border: 1px solid #000000;
+    color: #333333;
+    font-size: 12pt;
+    margin-left: 16px;
+    padding: 4px 2px;
+    text-align: left;
+    width: 90%;
+}
+.globalContainer .innerContainer .contentPaneSubsites .registerClientPane .inputTextBoxs select
+{
+    width: 100%;
+    border:0 none;
+    background-color: #fff;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable
+{
+    border: 1px solid #000000;
+    color: #333333;
+    width: 100%;
+    background-color: #fff;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable .agregarNuevaFila
+{
+	background-color: #F1F1F1;
+    border-bottom: 1px solid #BBBBBB;
+    color: #CCCCCC;
+    cursor: pointer;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable .agregarNuevaFila:hover
+{
+	background-color: #CCC;
+	color: #333333;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable thead
+{
+    background: url("../images/btnsBg.png") repeat-x scroll 0 -48px transparent;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable thead tr
+{
+    vertical-align: middle;
+    font-size: 12pt;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable thead tr th
+{
+    text-align: center;
+    vertical-align: middle;
+    text-shadow: 0px 1px 0px #fff;
+    /*font-weight: bold;*/
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable thead tr td
+{
+    background-color: #f1f1f1;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable thead tr .rightBorder
+{
+    border-right: 1px solid #333333;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody
+{
+    border-top: 1px solid #000;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .link
+{
+    text-decoration: none;
+    font-size: 9pt;
+    color: #a19176;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .link:hover
+{
+    text-decoration: underline;
+    color: #776952;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody tr
+{
+    height: 40px;
+    vertical-align: middle;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .borderRight
+{
+    border-right: 1px solid #aaaaaa;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody tr th
+{
+    vertical-align: middle;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody tr td
+{
+	background-color: #f1f1f1;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .inputCantPares
+{
+    border: 0 none;
+    font-size: 12pt;
+    padding: 6px 0;
+    text-align: center;
+    width: 100%;
+    background-color: #fff;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody select
+{
+    border: 1px solid #AAAAAA;
+    color: #333333;
+    font-size: 11pt;
+    margin: 0 4px;
+    padding: 2px;
+    width: 100px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody input
+{
+	border: 1px solid #AAAAAA;
+    color: #333333;
+    font-size: 11pt;
+    margin: 0 4px;
+    padding: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody textarea
+{
+	border: 1px solid #AAAAAA;
+    color: #333333;
+    font-size: 11pt;
+    margin: 0 4px;
+    padding: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .totalRowValue
+{
+    width: 100%;
+    background-color: #ddd;
+    text-shadow: 0px 1px 0px #fff;
+    text-align: right;
+    height: 100%;
+    border: 0 none;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .childSize
+{
+    background-color: #d5f9e8;
+    border: 1px solid #7bb69a;
+    padding: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .childSize
+{
+    background-color: #D5F9E8;
+    border: 1px solid #7BB69A;
+    margin: 4px;
+    padding: 2px;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .childSize input
+{
+    margin: 0 1px 0 6px;
+    position: relative;
+    top: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .childSize span
+{
+    font-size: 10pt;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .youngSize
+{
+    background-color: #d5e8f9;
+    border: 1px solid #7b9ab6;
+    margin: 4px;
+    padding: 2px;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .youngSize input
+{
+    margin: 0 1px 0 6px;
+    position: relative;
+    top: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .youngSize span
+{
+    font-size: 10pt;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .oldSize
+{
+    background-color: #f9e6d5;
+    border: 1px solid #b6967b;
+    margin: 4px;
+    padding: 2px;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .oldSize input
+{
+    margin: 0 1px 0 6px;
+    position: relative;
+    top: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .oldSize span
+{
+    font-size: 10pt;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .addRowBtn
+{
+    width: 11px;
+    height: 80px;
+    border: 0 none;
+    background: #72ac58 url('../icons/btn_addRow.png') no-repeat 0 0;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tbody .addRowBtn:hover
+{
+    opacity: 1.0;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tfoot
+{
+    background-color: #dbdbdb; border-top: 1px solid #000;
+    font-size: 11pt;
+    text-shadow: 0px 1px 0px #fff;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tfoot tr
+{
+    height: 28px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tfoot tr td
+{
+    vertical-align: middle;
+    padding-right: 6px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tfoot .borderBottom
+{
+    border-bottom: 1px solid #000;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable tfoot .borderRight
+{
+    border-right:1px solid #aaa;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable .regionZapato
+{
+	background-color: #FFFFFF;
+    border: 1px solid #AAAAAA;
+    font-size: 9pt;
+    margin: 4px;
+    max-width: 218px;
+    padding: 2px;
+    text-align: left;
+    text-indent: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable .regionZapato .DescripcionRegion
+{
+	border-bottom: 1px solid #CCCCCC;
+    color: #777777;
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable .regionZapato .listaParametros
+{
+	color: #777777;
+    text-indent: 10px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable .regionZapato .listaParametros span
+{
+	color: #333;
+}
+.globalContainer .innerContainer .contentPaneSubsites .orderTable .regionZapato .listaParametros ul
+{
+	width: auto;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel
+{
+    font-size: 11pt;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel .title
+{
+    color : #faeeda;
+    text-shadow: 0px 1px 0px #000;
+    font-size: 10pt;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel .searchBox
+{
+    padding: 10px 0px;
+    border-top: 1px solid #505355;
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel .searchBox span
+{
+    color :#776952;
+    text-shadow: 0px 1px 0px #000;
+    font-size: 10pt;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel .searchBox input
+{
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    color: #333333;
+    font-size: 14pt;
+    height: 32px;
+    margin-left: 38px;
+    padding: 2px 16px;
+    width: 80%;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel .searchBox input:hover
+{
+    box-shadow: 1px 1px 4px #000000;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel .clientTypeCheckBoxs
+{
+    padding: 6px 0px;
+    border-top: 1px solid #505355;
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel .clientTypeCheckBoxs label
+{
+    color: #776952;
+    cursor: pointer;
+    padding: 0 20px;
+    text-shadow: 0 1px 0 #000000;
+}
+.globalContainer .innerContainer .contentPaneSubsites .searchClientPanel .clientTypeCheckBoxs label input
+{
+    margin-right: 10px;
+    position: relative;
+    top: 1px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection
+{
+    padding-top: 30px;
+    border-top: 1px solid #505355;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .labelTitle
+{
+    color : #faeeda;
+    text-shadow: 0px 1px 0px #000;
+    font-size: 10pt;
+    padding-bottom: 10px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content
+{
+    background-color: #f1f1f1;
+    padding: 22px;
+    font-size: 9pt;
+    color: #333333;
+    overflow-y: scroll;
+    height: 400px;
+    /*box-shadow: 0 0 14px #222 inset;*/
+    /*box-shadow: 0 11px 9px #AAAAAA inset;*/
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li.division
+{
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #fff;
+    width: 100%;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li.division:hover
+{
+    box-shadow: none;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li
+{
+    border: 1px solid #aaaaaa;
+    overflow: hidden;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li:hover
+{
+	box-shadow: 0 4px 10px #777;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .fotoPane
+{
+    height: 50px;
+    width: 50px;
+    float: left;
+    background-color: #aedaf9;
+    border-right: 1px solid #aaaaaa;
+    margin-right: 20px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .descriptionPane
+{
+    float: left;
+    width: 656px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .descriptionPane div
+{
+    border-bottom: 1px solid #CCCCCC;
+    padding: 4px 0 6px;
+    width: 100%
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .descriptionPane .lastItem
+{
+    border: 0 none;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .descriptionPane div label
+{
+    color: #999999;
+    display: inline-block;
+    min-width: 110px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .descriptionPane div span
+{
+    margin-left: 20px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .descriptionPane a
+{
+    color: #A19176;
+    float: right;
+    font-size: 8pt;
+    position: relative;
+    right: 6px;
+    text-decoration: none;
+    top: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .descriptionPane a:hover
+{
+    color: #776952;
+	text-decoration: underline;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .optionsPane
+{
+    background-color: #999999;
+    border: 1px solid #FFFFFF;
+    float: right;
+    height: 36px;
+    overflow: auto;
+    padding: 6px;
+    width: 106px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .optionsPane .left
+{
+    border-right: 1px solid #666666;
+    height: 100%;
+    width: 22px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .optionsPane .right
+{
+    border-left: 1px solid #B8B8B8;
+    color: #FFFFFF;
+    height: 100%;
+    overflow: hidden;
+    padding-left: 8px;
+    text-align: left;
+    width: 74px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .optionsPane .right label
+{
+    cursor: pointer;
+    display: block;
+    padding-bottom: 4px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientListSection .content li .optionsPane .right label input
+{
+    position: relative;
+    top: 2px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane
+{
+    border: 1px solid #505355;
+    box-shadow: 0 -1px 12px #000000;
+    margin-top: 20px;
+    padding: 10px;
+    font-family: 11pt;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .title
+{
+    border-bottom: 1px solid #000000;
+    color: #FAEEDA;
+    font-size: 12pt;
+    padding-bottom: 10px;
+    text-shadow: 0 1px 0 #000000;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .title .closeIcon
+{
+    bottom: 5px;
+    float: right;
+    position: relative;
+    right: 20px;
+    cursor: pointer;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .title .closeIcon img
+{
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	-webkit-opacity: 0.5;
+	-o-opacity:0.5;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .profileContent
+{
+    border-top: 1px solid #505355;
+    padding-top: 10px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .profileContent table
+{
+    width: 100%;
+    border: 0 none;
+    color: #faeeda;
+    text-shadow: 0px 1px 0px #000;
+    text-align: center;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .profileContent table .clientPictureZone
+{
+    background-color: #f1f1f1;
+    border: 1px solid #000;
+    height: 220px;
+    width: 220px;
+    max-height: 400px;
+    max-width: 360px;
+    display: inline-block;
+    margin-top: 4px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .profileContent table .txtBoxs
+{
+    background-color: #f1f1f1;
+    border: 1px solid #000;
+    color: #333;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    text-shadow: none;
+	font-size: 14pt;
+	text-indent: 6px;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .profileContent table .txtBoxs .croquisLink
+{
+    color: #666666;
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    margin: 0 4px 0 0;
+    outline: medium none;
+    padding: 3px 0 0;
+    position: relative;
+    text-shadow: none;
+    white-space: nowrap;
+    width: auto;
+    opacity: 0.5;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .profileContent table .txtBoxs .croquisLink:hover
+{
+    opacity: 1.0;
+}
+.globalContainer .innerContainer .contentPaneSubsites .clientProfileViewPane .profileContent table .txtBoxs .croquisLink i
+{
+    background-image: url("../icons/map.png");
+    display: inline-block;
+    height: 16px;
+    margin-right: 5px;
+    margin-top: -1px;
+    vertical-align: top;
+    width: 15px;
+}
+/*----------------------------------------------------------------------------------------------------------*/
+.tablaInventario
+{
+    width: 100%; 
+    background-color: #fff; 
+    color: #333; 
+    font-size: 12pt;
+}
+.tablaInventario .tableHead
+{
+    background-color: #999999;  
+    color: #000;
+    text-align: center;
+    vertical-align: middle;
+    text-shadow: 0px 1px 0px #ccc;
+}
+.tablaInventario .tableHead tr
+{
+   height: 40px;
+   vertical-align: middle;
+}
+.tablaInventario .tableHead th
+{
+    border-left: 1px solid #aaa;
+    text-align: center;
+    vertical-align: middle;
+}
+.tablaInventario .tableBody
+{
+    background-color: #fff;
+    font-size: 10pt;
+}
+.tablaInventario .tableBody td
+{
+    vertical-align: middle;
+}
+.tablaInventario .tableFooter
+{
+    background-color: #999999;  
+    color: #000;
+    vertical-align: middle;
+    text-shadow: 0px 1px 0px #ccc;
+}
+.tablaInventario .tableFooter th
+{
+    text-align: right;
+}
+/*----------------------------------------------------------------------------------------------------------*/
+.floatR
+{
+    float: right;
+}
+.floatL
+{
+    float: left;
+}
+span.blueButton
+{
+    background: url("../images/btnsBg.png") no-repeat scroll 0 -98px #578dab;
+    border: 1px solid #174E6C;
+}
+span.greenButton
+{
+    background: url("../images/btnsBg.png") no-repeat scroll 0 0 #75ad5b;
+    border: 1px solid #2e750f;
+}
+span.yellowButton
+{
+    background: url("../images/btnsBg.png") no-repeat scroll 0 -146px #75ad5b;
+    border: 1px solid #eca918;
+}
+span.redButton
+{
+    background: url("../images/btnsBg.png") no-repeat scroll 0 -194px #75ad5b;
+    border: 1px solid #822222;
+}
+span.buttons
+{
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: normal;
+    padding: 2px 6px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: top;
+    white-space: nowrap;
+    opacity: 0.4;
+}
+span.buttons:hover
+{
+    opacity: 1.0;
+}
+span.buttons a
+{
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    outline: medium none;
+    padding: 1px 0 2px;
+    white-space: nowrap;
+    width: auto;
+    color: #fff;
+    text-decoration: none;
+}
+span.buttons a i
+{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-right: 5px;
+    margin-top: 2px;
+    vertical-align: top;
+}
+span.buttons a i.contactIcon
+{
+    background-image: url('../icons/contact_card.png');
+}
+span.buttons a i.trashIcon
+{
+    background-image: url('../icons/trash-del.png');
+}
+span.buttons a i.cameraIcon
+{
+    background-image: url('../icons/camera.png');
+}
+span.buttons a i.pictureIcon
+{
+    background-image: url('../icons/picture.png');
+}
+span.buttons a i.userIcon
+{
+    background-image: url('../icons/user.png');
+}
+span.buttons a i.modificationIcon
+{
+    background-image: url('../icons/modification.png');
+}
+span.buttons a i.okBoxIcon
+{
+    background-image: url('../icons/checkbox_checked.png');
+}
+span.buttons a i.orderIcon
+{
+    background-image: url('../icons/order.png');
+}
+span.buttons a i.imageLstIcon
+{
+    background-image: url('../icons/image_text.png');
+}
+span.buttons a i.viewIcon
+{
+    background-image: url('../icons/eye_inv.png');
+}
+span.buttons a i.cancelIcon
+{
+    background-image: url('../icons/cancel.png');
+}
+span.buttons a i.printerIcon
+{
+    background-image: url('../icons/printer.png');
+}
+span.buttons a i.goBackIcon
+{
+    background-image: url('../icons/undo.png');
+}
+span.buttons a i.homeIcon
+{
+    background-image: url('../icons/home.png');
+}
+.paramsPane
+{
+    font-size: 11pt;
+}
+.paramsPane .titles
+{
+    border-bottom: 1px solid #000;
+    font-size: 12pt;
+    width: 100%;
+    padding-bottom: 10px;
+}
+.paramsPane .contents
+{
+    border-top: 1px solid #505355;
+    border-bottom: 1px solid #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.paramsPane .contents .tables
+{
+    width: 100%;
+    background-color: #f1f1f1;
+    border: 1px solid #000;
+    color: #333;
+}
+.paramsPane .contents .tables thead
+{
+    background-color: #cccccc;
+    color: #000;
+    text-shadow: 0px 1px 0px #fff;
+    text-align: center;
+    vertical-align: middle;
+}
+.fancyFormClientProfile
+{
+    font: 11px tahoma,arial,sans-serif;
+    color: #333333;
+    text-align: left;
+    background: url("../images/panelsBg.png") repeat scroll 0 0 #2a2c2f;
+}
+.errorlist
+{
+	color: #FF0000;
+    font-size: 8pt;
+    text-shadow: none;
+}
+.addParams
+{
+	float: right;
+    position: relative;
+    right: 20px;
+    top: 7px;
+	cursor: pointer;
+}
+.addParams a
+{
+	height: 16px;
+	width: 16px;
+	background-image: url('../icons/plus-circle.png');
+	display: inline-block;
+	text-decoration: none;
+	opacity: 0.7;
+}
+.addParams a:hover
+{
+	opacity: 1.0;
+}
+/*   --------------------------------------------*/
+footer
+{
+    height: 40px;
+}

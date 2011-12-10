@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+	<form enctype ="multipart/form-data" method="POST">
+		{% csrf_token %}
+		{{ nef.as_p }}
+		<input type="submit" value = "willy"/>
+	</form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+{% endblock %}

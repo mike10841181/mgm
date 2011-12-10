@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+	<div class="headerSubsites">
+		<div class="subsiteIcon">
+			<img src="{{ STATIC_URL }}icons/clientAdmonIcon.png"/>
+		</div>
+		<div class="subsiteDescrOptions">
+			<div class="title">ADMINISTRACI&Oacute;N DE CLIENTES</div>
+			<div id="submenuCliente" class="subSiteMenu">
+				<a href="/clientes/"><span id="subMenuCliente_1">Ver Perfiles</span>
+				<a href="/clientes/nuevo/"><span id="submenuCliente_2" >Registrar Nuevo</span></a>
+				<span id="submenuCliente_3" class="selectedSubmenu">Modificar Perfil</span>
+				<a href="/clientes/activarDesactivar/"><span id="submenuCliente_4" >Activar / Desactivar</span></a>
+			</div>
+		</div>
+	</div>
+
+	<div id="ContentPaneSubsites" class="contentPaneSubsites">
+		<div class="searchClientPanel">
+			<div class="title">Panel de Búsquedas</div>
+			<div class="searchBox">
+				<span>Buscar&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+				<input id="BuscadorDeClientes" onkeyup='filtroDeClientes(this.value, $(":checked").val() )' type="text"/>
+			</div>
+			<div class="clientTypeCheckBoxs">
+				Mostrar Clientes :
+				<label>
+					<input value="tCl_0" type="radio" name="tipoCliente" checked="checked" onclick='filtroDeClientes($("#BuscadorDeClientes").val(), this.value)'/>Todos
+				</label>				
+				{% for t in tipos %}
+				|
+				<label>
+					<input value="tCl_{{ t.idTipoDeCliente }}" type="radio" name="tipoCliente" onclick='filtroDeClientes($("#BuscadorDeClientes").val(), this.value)'/>{{ t.nombre }}
+				</label>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="clientListSection">
+			<div class="labelTitle">Resultados de Busqueda</div>
+				<div class="content">
+					<ul id="listaClientes">
+						{% for c in clientes %}
+						<li idTipoDeCliente="tCl_{{ c.tipoDeCliente.idTipoDeCliente }}" primerNombre="{{ c.primerNombre }}" segundoNombre="{{ c.segundoNombre }}" primerApellido="{{ c.primerApellido }}" segundoApellido="{{ c.primerApellido }}">
+							<div class="fotoPane">
+								<img src="{{ c.imagen.url }}" width="50" height="50"/>
+							</div>
+							<div class="descriptionPane">
+								<div><label>Nombre / Titulo : </label><span>{{ c.primerNombre }} {{ c.primerApellido }}</span></div>
+								<div class="lastItem">
+									<label>Tipo de Cliente : </label><span>{{ c.tipoDeCliente.nombre }}</span>
+								</div>
+							</div>
+							<div class="optionsPane" style="text-align: center;">
+								<span id="idCliente_{{ c.pk }}" class="buttons blueButton" style="margin-top: 5px;" onclick="javascript:location.href='{{ c.usuario.username }}'">
+									<a><i class="modificationIcon"></i>Modificar</a>
+								</span>
+							</div>
+						</li>
+						<li class="division"></li>
+						{% endfor %}
+					</ul>
+				</div>                
+			</div>
+		<div id="ClientProfileViewPane" class="clientProfileViewPane" style="display: none;">
+			
+			
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+
+{% endblock %}
+

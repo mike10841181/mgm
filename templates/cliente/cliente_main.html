@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+	<div class="headerSubsites">
+		<div class="subsiteIcon">
+			<img src="{{ STATIC_URL }}icons/clientAdmonIcon.png"/>
+		</div>
+		<div class="subsiteDescrOptions">
+			<div class="title">ADMINISTRACI&Oacute;N DE CLIENTES</div>
+			<div id="submenuCliente" class="subSiteMenu">
+				<span id="submenuCliente_1" class="selectedSubmenu">Ver Perfiles</span>
+				<a href="nuevo/"><span id="submenuCliente_2" >Registrar Nuevo</span></a>
+				<a href="modificar/"><span id="submenuCliente_3" >Modificar Perfil</span></a>
+				<a href="activarDesactivar/"><span id="submenuCliente_4" >Activar / Desactivar</span></a>
+			</div>
+		</div>
+	</div>
+
+	<div id="ContentPaneSubsites" class="contentPaneSubsites">
+		<div class="searchClientPanel">
+			<div class="title">Panel de Búsquedas</div>
+			<div class="searchBox">
+				<span>Buscar&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+				<input id="BuscadorDeClientes" onkeyup='filtroDeClientes(this.value, $(":checked").val() )' type="text"/>
+			</div>
+			<div class="clientTypeCheckBoxs">
+				Mostrar Clientes :
+				<label>
+					<input value="tCl_0" type="radio" name="tipoCliente" checked="checked" onclick='filtroDeClientes($("#BuscadorDeClientes").val(), this.value)'/>Todos
+				</label>				
+				{% for t in tipos %}
+				|
+				<label>
+					<input value="tCl_{{ t.idTipoDeCliente }}" type="radio" name="tipoCliente" onclick='filtroDeClientes($("#BuscadorDeClientes").val(), this.value)'/>{{ t.nombre }}
+				</label>
+				{% endfor %}
+			</div>
+		</div>
+		
+		<div class="clientListSection">
+			<div class="labelTitle">
+				Resultados de Busqueda
+			</div>
+
+			<div class="content">
+				<ul id="listaClientes">
+					{% for c in clientes %}
+					<li idTipoDeCliente="tCl_{{ c.tipoDeCliente.idTipoDeCliente }}" primerNombre="{{ c.primerNombre }}" segundoNombre="{{ c.segundoNombre }}" primerApellido="{{ c.primerApellido }}" segundoApellido="{{ c.primerApellido }}">
+						<div class="fotoPane">
+							<img src="{{ c.imagen.url }}" width="50" height="50"/>
+						</div>
+						<div class="descriptionPane">
+							<div><label>Nombre / Titulo : </label><span>{{ c.primerNombre }} {{ c.primerApellido }}</span></div>
+							<div class="lastItem">
+								<label>Tipo de Cliente : </label><span>{{ c.tipoDeCliente.nombre }}</span>
+							</div>
+						</div>
+						<div class="optionsPane" style="text-align: center;">
+							<span id="idCliente_{{ c.pk }}" class="buttons greenButton" style="margin-top: 5px;" onclick="mostrarPerfil(this.id)">
+								<a><i class="contactIcon"></i>Ver Perfil</a>
+							</span>
+						</div>
+					</li>
+					<li class="division"></li>
+					{% endfor %}
+				</ul>
+			</div>                
+		</div>
+		
+		<div id="ClientProfileViewPane" class="clientProfileViewPane" style="display: none;">
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+	<script type="text/javascript">
+		function mostrarPerfil(idCliente){
+			idCliente = idCliente.split('_')[1];
+			codigo = '<div class="title">Perfil del cliente con usuario: "<span id="usuarioDeCliente"></span> - <span id="codigoDeCliente"></span>"' +
+					'<div class="closeIcon" onclick="ClientProfileViewPaneDisplay(0)">' +
+					'<img src="{{ STATIC_URL }}icons/close_icon_med.png" onmouseout="$(this).animate({\'opacity\' : \'0.5\'})" onmouseover="$(this).animate({\'opacity\' : \'1.0\'})"/></div></div>' +
+					'<div class="profileContent">' +
+						'<table cellspacing="0" cellpadding="0">' +
+							'<tr>' +
+								'<td style="width: 30%;">' +
+									'Imagen del Cliente' +
+									'<div class="clientPictureZone">' +
+										'<img id="imagenDeCliente" src="" width="220" height="220"/>' +
+									'</div>' +
+								'</td>' +
+								'<td>' +
+									'<div style="text-align: left;">' +
+										'<div>' +
+											'Nombre del Cliente / Empresa :' +
+											'<div id="nombreDeCliente" class="txtBoxs" style="height: 26px; width: 96%;"></div>' +
+										'</div>' +
+										'<div>' +
+											'Dirección :' +
+											'<div id="direccionDeCliente" class="txtBoxs" style="height: 64px; width: 96%;"></div>' +
+										'</div>' +
+										'<div style="float: left;">' +
+											'Tipo de Cliente :' +
+											'<div id="tipoDeCliente"  class="txtBoxs" style="height: 26px; width: 160px;"></div>' +
+										'</div>' +
+										'<div style="float: left; margin-left: 16px;">' +
+											'Antiguedad :' +
+											'<div id="antiguedadDeCliente" class="txtBoxs" style="height: 26px; width: 160px;"></div>' +
+										'</div>' +
+										'<div style="float: left; margin-left: 16px;">' +
+											'Tel&eacute;fono Fijo :' +
+											'<div id="telefonoFijoDeCliente" class="txtBoxs" style="height: 26px; width: 114px;"></div>' +
+										'</div>' +
+										'<div style="float: left; margin-left: 16px;">' +
+											'Tel&eacute;fono M&oacute;vil :' +
+											'<div id="telefonoMovilDeCliente" class="txtBoxs" style="height: 26px; width: 113px;"></div>' +
+										'</div>' +
+										'<div style="float: left;">' +
+											'Correo Electr&oacute;nico :' +
+											'<div id="correoElectronicoDeCliente" class="txtBoxs" style="height: 26px; width: 100%;"></div>' +
+										'</div>' +
+									'</div>' +
+								'</td>' +
+							'</tr>' +
+						'</table>' +
+						'<div style="height: 40px; margin-right: 26px;">' +
+							'<span id="modificarPerfilDeCliente" class="buttons blueButton" style="margin-top: 5px; float:right;">' +
+								'<a>' +
+									'<i class="modificationIcon"></i>' +
+									'Modificar Perfil' +
+								'</a>' +
+							'</span>' +
+						'</div>' +
+					'</div>';
+			
+			{% for c in clientes %}
+			if ( idCliente == '{{ c.pk }}' ){
+				$('#ClientProfileViewPane').html(codigo);
+				$('#usuarioDeCliente').html('{{ c.usuario.username }}');
+				$('#codigoDeCliente').html('EM_{{ c.pk }}');
+				$('#imagenDeCliente').attr('src', '{{ c.imagen.url }}');
+				var nombreCompleto = '{{ c.primerNombre }} {{ c.segundoNombre }} {{ c.primerApellido }} {{ c.segundoApellido }}'
+				nombreCompleto = nombreCompleto.replace(/N\/A/ig, "");
+				nombreCompleto = nombreCompleto.replace("  ", " ");
+				$('#nombreDeCliente').html(nombreCompleto);
+				$('#direccionDeCliente').html('{{ c.direccion }}');
+				$('#tipoDeCliente').html('{{ c.tipoDeCliente }}');
+				$('#antiguedadDeCliente').html('{{ c.antiguedad }}');
+				$('#telefonoFijoDeCliente').html('{{ c.telefonoFijo }}');
+				$('#telefonoMovilDeCliente').html('{{ c.telefonoMovil }}');
+				$('#correoElectronicoDeCliente').html('{{ c.correoElectronico }}');
+				$('#modificarPerfilDeCliente').attr('onclick', 'javascript:location.href=\'modificar/{{ c.usuario.username }}\'');
+				ClientProfileViewPaneDisplay(1);
+				$('html, body').animate({
+					scrollTop:1000
+				}, 'slow');
+			}
+			{% endfor %}
+		}
+	</script>
+{% endblock %}

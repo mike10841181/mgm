@@ -1,0 +1,53 @@
+<div class="clientFancyProfilePreview">
+	<div class="title">Detalles del Empleado - "{{ empleado.usuario.username }}"</div>
+	<div class="content">
+		<div class="leftPane">
+			<div class="imageSpace">
+				<img src="{{ empleado.imagen.url }}" width="150" height="150" />
+			</div>
+			<div class="clientMoreDetails">
+			<div class="titleMoreDetails">Informaci&oacute;n adicional:</div>
+				<ul style="list-style: disc outside none; margin-left: 20px; margin-top: 4px;">
+					<li>Estado del Empleado :		
+						{% if empleado.eliminada %}
+							<span style="color: #ffe400;">Inactivo</span>
+						{% else %}
+							<span style="color: #55e01e;">Activo</span>
+						{% endif %}
+					</li>
+					<li>Tipo de Empleado : <span style="color: #ccc;">{{ empleado.tipoDeEmpleado}}</span></li>
+					<li>Departamento: <span style="color: #ccc;">{{ empleado.tipoDeEmpleado.areaDepartamento.nombre }}</span></li>
+				</ul>
+			</div>
+		</div>
+		<div class="rightPane">
+			<div class="formFields">
+			Nombre completo:
+				<div>
+					<span id="nombresDeEmpleado"></span>
+				</div>
+			</div>
+			<div class="formFields">
+			Direccion:
+				<div>
+					<span>{{ empleado.direccion }}</span>
+				</div>
+			</div>
+			<div class="formFields">
+			Contactos:
+				<div>
+					<span><span class="subDescr">Tel.:</span> {{ empleado.telefonoFijo }}, <span class="subDescr">M&oacute;vil:</span>  {{ empleado.telefonoMovil}}</span>
+				</div>
+				<div>
+					<span><span class="subDescr">E-mail:</span> {{ empleado.correoElectronico }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var nombreCompleto = '{{ empleado.primerNombre }} {{ empleado.segundoNombre }} {{ empleado.primerApellido }} {{ empleado.segundoApellido }}'
+	nombreCompleto = nombreCompleto.replace(/N\/A/ig, "");
+	nombreCompleto = nombreCompleto.replace("  ", " ");
+	$('#nombresDeEmpleado').html(nombreCompleto);
+</script>

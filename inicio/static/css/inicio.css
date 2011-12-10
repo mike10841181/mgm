@@ -1,0 +1,66 @@
+.globalContainer .innerContainer .slideShow
+{
+    height: 360px;
+    width: 960px;
+    background-color: #333333;
+}
+.globalContainer .innerContainer .boxesSpace
+{
+    height: 300px;
+    margin-top: 4px;
+    text-align: center;
+}
+.globalContainer .innerContainer .boxesSpace .box
+{
+    background: url("../images/boxesBg.png") repeat-x scroll 0 0 #121212;
+    float: left;
+    height: 238px;
+    margin: 20px 10px 0px 10px;
+    padding: 18px 16px;
+    padding-bottom: 0px;
+    text-align: left;
+    width: 264px;
+    box-shadow: 2px 2px 2px #000;
+}
+.globalContainer .innerContainer .boxesSpace .box .title
+{
+    color: #C1AE8E;
+    font-size: 18pt;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    text-shadow: 0 2px 0 #000000;
+}
+.globalContainer .innerContainer .boxesSpace .box .content
+{
+    font-size: 9pt;
+    color: #fff;
+    text-shadow: 0px 1px 0px #000;
+    text-align:justify;
+}
+.globalContainer .innerContainer .boxesSpace .box .content .items
+{
+    border-bottom: 1px solid #5a5a5a;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.globalContainer .innerContainer .boxesSpace .box .content .items img
+{
+    margin-top: 2px;
+    vertical-align: top;
+    display: inline-block;
+}
+.globalContainer .innerContainer .boxesSpace .box .content .items a
+{
+    color: #fff;
+    text-decoration: none;
+    font-size: 12pt;    
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    outline: medium none;
+    padding: 8px 0 2px;
+    white-space: nowrap;
+    margin-left: 10px;    
+}

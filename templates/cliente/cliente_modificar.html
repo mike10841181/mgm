@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+	<div class="headerSubsites">
+		<div class="subsiteIcon">
+			<img src="{{ STATIC_URL }}icons/clientAdmonIcon.png"/>
+		</div>
+		<div class="subsiteDescrOptions">
+			<div class="title">ADMINISTRACI&Oacute;N DE CLIENTES</div>
+			<div id="submenuCliente" class="subSiteMenu">
+				<a href="/clientes/"><span id="subMenuCliente_1">Ver Perfiles</span>
+				<a href="/clientes/nuevo/"><span id="submenuCliente_2" >Registrar Nuevo</span></a>
+				<span id="submenuCliente_3" class="selectedSubmenu">Modificar Perfil</span></a>
+				<a href="/clientes/activarDesactivar/"><span id="submenuCliente_4" >Activar / Desactivar</span></a>
+			</div>
+		</div>
+	</div>
+	<div id="ContentPaneSubsites" class="contentPaneSubsites">
+		<div class="formRegistroPersonas">
+			<form enctype ="multipart/form-data" method="POST" action="">
+				{% csrf_token %}
+				{{ f.non_field_errors }}
+				<div class="leftSpace" style="min-height: 480px;">
+					<div class="lines"></div>
+					<div class="title">Panel de modificaci&oacute;n</div>
+					<div class="lines"></div>
+					<br/>
+					<div class="formFields">
+						{{ f.primerNombre.errors }}
+						<label for="id_primerNombre">{{ f.primerNombre.label }}:</label>
+						{{ f.primerNombre }}<span class="fieldInformation" original-title="{{f.primerNombre.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.segundoNombre.errors }}
+						<label for="id_segundoNombre">{{ f.segundoNombre.label }}:</label>
+						{{ f.segundoNombre }}<span class="fieldInformation" original-title="{{f.segundoNombre.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.primerApellido.errors }}
+						<label for="id_primerApellido">{{ f.primerApellido.label }}:</label>
+						{{ f.primerApellido }}<span class="fieldInformation" original-title="{{f.primerApellido.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.segundoApellido.errors }}
+						<label for="id_segundoApellido">{{ f.segundoApellido.label }}:</label>
+						{{ f.segundoApellido }}<span class="fieldInformation" original-title="{{f.segundoApellido.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.numeroDeIdentidad.errors }}
+						<label for="id_numeroDeIdentidad">{{ f.numeroDeIdentidad.label }}:</label>
+						{{ f.numeroDeIdentidad }}<span class="fieldInformation" original-title="{{f.numeroDeIdentidad.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.direccion.errors }}
+						<label for="id_direccion">Direcci&oacute;n:</label>
+						<span style="display: none;">{{ f.direccion }}</span>
+						<textarea id="campoDeIdDireccion"  COLS=40 ROWS=2 onkeyup="$('#id_direccion').attr('value', $(this).val())"  maxlength="100"></textarea>
+						<span class="fieldInformation" original-title="{{f.direccion.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.telefonoFijo.errors }}
+						<label for="id_telefonoFijo">Tel&eacute;fono fijo:</label>
+						{{ f.telefonoFijo }}<span class="fieldInformation" original-title="{{f.telefonoFijo.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.telefonoMovil.errors }}
+						<label for="id_telefonoMovil">Tel&eacute;fono m&oacute;vil:</label>
+						{{ f.telefonoMovil }}<span class="fieldInformation" original-title="{{f.telefonoMovil.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.correoElectronico.errors }}
+						<label for="id_correoElectronico">Correo electr&oacute;nico:</label>
+						{{ f.correoElectronico }}<span class="fieldInformation" original-title="{{f.correoElectronico.help_text}}" onmouseover="toolTipPos(this, 's')">&nbsp;<span/>
+					</div>
+					<div class="formFields">
+						{{ f.tipoDeCliente.errors }}
+						<label for="id_tipoDeCliente">Tipo de cliente:</label>
+						{{ f.tipoDeCliente }}
+						<i class="addParams" original-title="Agregar mas tipos de Cliente" onmouseover="toolTipPos(this, 's')">
+							<a onclick="return showAddAnotherPopupMgm(this, 300, 800);" href="/admin/cliente/tipodecliente/add/">&nbsp;</a>
+						</i>
+					</div>
+					<div class="formFields">
+						{{ f.antiguedad.errors }}
+						<label for="id_antiguedad">Antiguedad:</label>
+						{{ f.antiguedad }}
+						<i class="addParams" original-title="Agregar mas tipos de Antiguedad" onmouseover="toolTipPos(this, 's')">
+							<a onclick="return showAddAnotherPopupMgm(this, 300, 800);" href="/admin/cliente/antiguedad/add/">&nbsp;</a>
+						</i>
+					</div>
+				</div>
+				<div class="rightSpace" style="margin-top: 6px; min-height: 480px;">
+					<div class="formFields">
+						<label for="id_imagen">Imagen actual de perfil:</label>
+						{{ f.imagen.errors }}
+						<div class="personImage" style="margin-top: 6px;">
+							<img id="imagenDePerfilCliente" src="" width="340" height="340"/>
+						</div>
+						<div style="text-align: center;">
+							<!--span class="buttons greenButton" style="margin-top: 5px; opacity: 1.0;" onclick="$('#id_imagen').trigger('click')" onmouseout="$('#imagenDePerfilCliente').attr('src',$('#id_imagen').val())"-->
+							<span class="buttons greenButton" style="margin-top: 5px; opacity: 1.0;" onclick="$('#id_imagen').trigger('click')">
+								<a><i class="cameraIcon"></i>Cambiar imagen de perfil</a>
+							</span>
+						</div>
+						<span id="imagenDePerfilClienteSrc" style="display: none;">{{ f.imagen }}</span>
+					</div>
+				</div>
+				<div class="optionsPane">
+					<span class="buttons greenButton" onclick='javascript:history.go(-1)'>
+						<a><i class="goBackIcon"></i>Volver atras</a>
+					</span>
+					<span class="buttons blueButton" onclick="$('#submitModificarCliente').trigger('click')">
+						<a><i class="userIcon"></i>Guardar cambios de perfil</a>
+					</span>
+					<input id="submitModificarCliente" type="submit" value="Guardar" style="display: none;"/>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+<script type="text/javascript">
+	$('#imagenDePerfilCliente').attr('src', $('#imagenDePerfilClienteSrc > a').attr('href'));
+	$('#campoDeIdDireccion').attr('value', $('#id_direccion').val());
+</script>
+{% endblock %}

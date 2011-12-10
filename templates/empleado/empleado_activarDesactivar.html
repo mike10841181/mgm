@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}							
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+	<div class="headerSubsites">
+		<div class="subsiteIcon">
+			<img src="{{ STATIC_URL }}icons/clientAdmonIcon.png"/>
+		</div>
+		<div class="subsiteDescrOptions">
+			<div class="title">ADMINISTRACI&Oacute;N DE EMPLEADOS</div>
+			<div id="submenuCliente" class="subSiteMenu">
+				<a href="/empleados/"><span id="submenuCliente_1">Ver Perfiles</span></a>
+				<a href="/empleados/nuevo/"><span id="submenuCliente_2" >Registrar Nuevo</span></a>
+				<a href="/empleados/modificar/"><span id="submenuCliente_3" >Modificar Perfil</span></a>
+				<span id="submenuCliente_4" class="selectedSubmenu">Activar / Desactivar</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="ContentPaneSubsites" class="contentPaneSubsites">
+		<div class="searchClientPanel">
+			<div class="title">Panel de Búsquedas</div>
+			<div class="searchBox">
+				<span>Buscar&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+				<input id="BuscadorDeEmpleados" onkeyup='filtroDeEmpleados(this.value, $(":checked").val() )' type="text"/>
+			</div>
+			<div class="clientTypeCheckBoxs">
+				Mostrar Clientes :
+				<label>
+					<input value="tEm_0" type="radio" name="tipoEmpleado" checked="checked" onclick='filtroDeEmpleados($("#BuscadorDeEmpleados").val(), this.value)'/>Todos
+				</label>				
+				{% for t in tipos %}
+				|
+				<label>
+					<input value="tEm_{{ t.idTipoDeEmpleado }}" type="radio" name="tipoEmpleado" onclick='filtroDeEmpleados($("#BuscadorDeEmpleados").val(), this.value)'/>{{ t.nombre }}
+				</label>
+				{% endfor %}
+			</div>
+		</div>
+		
+		<div class="clientListSection">
+			<form method="POST">
+				<div class="labelTitle">
+					Listado de Empleados
+				</div>
+				
+				<div class="content">
+					<ul id="listaClientes">
+						{% csrf_token %}
+						{% for e in empleados %}
+						<li idTipoDeEmpleado="tEm_{{ e.tipoDeEmpleado.idTipoDeEmpleado }}" primerNombre="{{ e.primerNombre }}" segundoNombre="{{ e.segundoNombre }}" primerApellido="{{ e.primerApellido }}" segundoApellido="{{ e.primerApellido }}">
+							<div class="fotoPane">
+								<img src="{{ e.imagen.url }}" width="50" height="50"/>
+							</div>
+					
+							<div class="descriptionPane">
+								<div>
+									<label>
+										Nombre / Titulo : 
+									</label>
+									<span>
+										{{ e.primerNombre }} {{ e.primerApellido }}
+									</span>
+								</div>
+								
+								<div class="lastItem">
+									<label>
+										Tipo de Empleado : 
+									</label>
+									<span>
+										{{ e.tipoDeEmpleado.nombre }}
+									</span>
+									<a name="fancyClientsInfoPreview" href="/empleados/empleado_fancyPerfil/{{ e.usuario.username }}" rel="perfilesDeEmpleados" title="Detalles de Perfil">Ver mas informaci&oacute;n de este Empleado</a>
+								</div>
+							</div>
+							
+							<div class="optionsPane" style="text-align: center;">
+								{% if e.eliminada %}
+									<span id="idEmpleado_{{ e.pk }}" class="buttons greenButton" style="margin-top: 5px; width: 90px; height: 18px;">
+										<label style="cursor: pointer;">
+											<input type="checkbox" value="{{ e.pk }}" name="listadoIdDeEmpleados" style="position: relative; top: 2px;"/>
+											Activar
+										</label>
+									</span>
+								{% else %}
+									<span id="idEmpleado_{{ e.pk }}" class="buttons yellowButton" style="margin-top: 5px; width: 90px; height: 18px;">
+										<label style="cursor: pointer;">
+											<input type="checkbox" value="{{ e.pk }}" name="listadoIdDeEmpleados" style="position: relative; top: 2px;"/>
+											Desactivar
+										</label>
+									</span>
+								{% endif %}
+							</div>
+							
+						</li>
+							
+						<li class="division"></li>
+							
+						{% endfor %}
+					</ul>
+				</div>
+				<div style="width:100%; text-align:right;">
+					<span class="buttons blueButton" style="margin-top: 5px;" onclick="$('#submitActivarDesactivar').trigger('click')">
+						<a><i class="okBoxIcon"></i>Guardar Cambios</a>
+					</span>
+					
+					<input id="submitActivarDesactivar" type="submit" value="Guardar Cambios" style="display:none;"/>
+				</div>
+			</form>                
+		</div>
+		
+		<div id="ClientProfileViewPane" class="clientProfileViewPane" style="display: none;">	
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+
+{% endblock %}
+

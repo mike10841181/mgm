@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+<div class="headerSubsites">
+	<div class="subsiteIcon" style="width: 92px;">
+		<img src="{{ STATIC_URL }}icons/orderIcon.png"/>
+	</div>
+	<div class="subsiteDescrOptions">
+		<div class="title">PEDIDOS</div>
+		<div id="submenuPedido" class="subSiteMenu">
+			<span id="submenuPedido_1" class="selectedSubmenu">Consultar</span>
+			<a href="ingresar/"><span id="submenuPedido_2" >Ingresar</span></a>
+			<a href="modificar/"><span id="submenuPedido_3" >Modificar</span></a>
+			<a href="solicitados/"><span id="submenuPedido_4" >Autorizar / Cancelar</span></a>
+			<a href="eliminar/"><span id="submenuPedido_5" >Eliminar</span></a>
+		</div>
+	</div>
+</div>
+	
+<div id="ContentPaneSubsites" class="contentPaneSubsites" style="padding: 10px;">
+	<div class="searchClientPanel">
+		<div class="title">
+			Panel de Búsquedas
+		</div>
+		
+		<div class="searchBox">
+			<span>
+				Busqueda por C&oacute;digo:
+			</span>
+
+			<input type="text"/ style="width: 70%;">
+		</div>
+	</div>
+	
+	<div class="clientListSection">
+		<div class="labelTitle">Resultados de Busqueda</div>
+		<div class="content">
+			<ul>
+				{% for p in pedidos %}
+				<li codigoDePedido="{{ p }}">              
+					<div class="descriptionPane" style="margin-left: 10px;">
+						<div><label>Codigo Pedido : </label><span>{{ p }}</span></div>
+						<div>
+							<label>Cliente : </label><span>{{ p.cliente }}</span><a name="fancyClientsInfoPreview" href="/clientes/cliente_fancyPerfil/{{ p.cliente.usuario.username }}" rel="perfilesDeClientes" title="Perfil de Cliente">Ver Perfil del Cliente</a>
+						</div>
+						<div>
+							<label>Vendedor : </label><span>{{ p.vendedor }}</span><a name="fancyClientsInfoPreview" href="/empleados/empleado_fancyPerfil/{{  p.vendedor.usuario.username }}" rel="perfilesDeEmpleados" title="Perfil de Vendedor">Ver perfil del Vendedor</a>
+						</div>
+						<div>
+							<label>Estado del Pedido : </label><span>{{ p.estado }}</span>
+						</div>
+						<div class="lastItem">
+							<label>Fecha de Solicitud : </label><span>{{ p.fechaDeCreacion }}</span>
+						</div>
+					</div>
+					<div class="optionsPane" style="text-align: center; height: 110px; width: 160px">
+						<span id="idPedido_{{ p.pk }}" class="buttons greenButton" style="margin-top: 24px;" onclick="mostrarInformacion(this.id)">
+							<a><i class="viewIcon"></i>&nbsp;Mas Detalles&nbsp;</a>
+						</span>
+						<br/>
+						<span class="buttons greenButton" style="margin-top: 5px;">
+							<a><i class="orderIcon"></i>Ver Fatura(s)</a>
+						</span>
+					</div>
+				</li>
+				
+				<li class="division"></li>
+				{% endfor %}
+			</ul>
+		</div>                
+	</div>
+	
+	<div id="ClientProfileViewPane" class="clientProfileViewPane" style="display: none;">
+	</div>
+</div>
+	
+	
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+	<script type="text/javascript">
+		function mostrarInformacion(idPedido){
+			idPedido = idPedido.split('_')[1];
+			codigo = '<div class="title">' +
+						'<span id="codigoDePedido"></span>' +
+						'<div class="closeIcon" onclick="ClientProfileViewPaneDisplay(0)">' +
+							'<img src="{{ STATIC_URL }}icons/close_icon_med.png" onmouseout="$(this).animate({\'opacity\' : \'0.5\'})" onmouseover="$(this).animate({\'opacity\' : \'1.0\'})"/>' + 
+						'</div>' +
+					'</div>' +
+					'<div class="profileContent">' +
+						'<table class="orderTable" cellspacing="0" cellpadding="0" style="font-size: 11pt; color: #000;">' +
+							'<thead>' +
+								'<tr>' +
+									'<th class="rightBorder">Modelo</th>' +
+									'<th class="rightBorder">Talla</th>' +
+									'<th class="rightBorder">Suela</th>' +
+									'<th class="rightBorder">Texturas</th>' +
+									'<th class="rightBorder">Descripci&oacute;n</th>' +
+									'<th class="rightBorder">Cant. Pares</th>' +
+									'<th class="rightBorder">Total</th>' +
+								'</tr>' +
+							'</thead>' +
+							'<tbody id="tablaDeDetalles" style="text-shadow: none;">' +
+							'</tbody>' +
+							'<tfoot id="totales">' +
+							'</tfoot>' +
+						'</table>' +
+					'</div>'
+			
+			$('#ClientProfileViewPane').html(codigo);
+			
+			{% for p in pedidos %}
+			if (idPedido == '{{ p.pk }}' ){
+				$('#codigoDePedido').html('Detalle de Pedido : {{ p }}');
+				$('#tablaDeDetalles').html('');
+				{% for d in p.detalledepedido_set.all %}
+					fila = ('<tr style="height: 30px; vertical-align: middle; border-bottom: 1px solid #aaa;">');
+					fila += ('<td style="border-right: 1px solid #aaa; vertical-align: middle;"><div>{{ d.zapato.modelo }}</div></td>');
+					fila += ('<td style="border-right: 1px solid #aaa; vertical-align: middle;"><div>{{ d.zapato.talla.valor }}</div></td>');
+					fila += ('<td style="border-right: 1px solid #aaa; vertical-align: middle;"><div>{{ d.zapato.suela.nombre }}</div></td>');
+					fila += ('<td style="border-right: 1px solid #aaa; background-color: #ddd; width: 214px;">');
+					//alert('regiones de textura: {{ d.regiondetextura_set.all.count }}');
+					
+					{% for rdt in d.regiondetextura_set.all %}
+						//alert('rdt.color: "{{ rdt.textura.color.nombre }}"');
+						fila += ('<div class="regionZapato">');
+						fila += ('<div class="DescripcionRegion">Region {{ rdt }}</div>');
+						fila += ('<div class="listaParametros">');
+						fila += ('<ul>');
+						fila += ('<li>Color: <span>{{ rdt.textura.color.nombre }}</span></li>');
+						fila += ('<li>Cuero: <span>{{ rdt.textura.cuero.nombre }}</span></li>');
+						fila += ('</ul></div></div>');
+					{% endfor %}
+					fila += ('</td>'); 
+					
+					fila += ('<td style="border-right: 1px solid #aaa; vertical-align: middle; width: 206px"><textarea readonly="readonly" style="max-width: 200px;">{{ d.descripcion }}</textarea></td>');
+					fila += ('<td style="border-right: 1px solid #aaa; vertical-align: middle;"><div>{{ d.cantidad }}</div></td>');
+					fila += ('<td style="vertical-align: middle; background-color: #DDDDDD;"><div id="totalTabla">{{ d.total }}</div></td>');
+					fila += ('</tr>');
+					$('#tablaDeDetalles').append(fila);
+				{% endfor %}
+				
+				$('#totales').html('');
+				totales = '<tr class="borderBottom"><td colspan="6" class="borderRight" style="text-align: right;">Subtotal</td>'
+				totales += '<td colspan="2" style="text-align: right;">{{ p.subTotal }}</td></tr>'
+				
+				totales += '<tr class="borderBottom"><td colspan="6" class="borderRight" style="text-align: right;">ISV</td>'
+				totales += '<td colspan="2" style="text-align: right;">{{ p.isv }}</td></tr>'
+				
+				totales += '<tr class="borderBottom"><td colspan="6" class="borderRight" style="text-align: right;">Descuento</td>'
+				totales += '<td colspan="2" style="text-align: right;">{{ p.descuento }}</td></tr>'
+				
+				totales += '<tr><td colspan="6" class="borderRight" style="text-align: right;">Total a pagar</td>'
+				totales += '<td colspan="2" style="text-align: right;">{{ p.total }}</td></tr>'
+				$('#totales').html(totales);
+				
+				ClientProfileViewPaneDisplay(1);
+				
+				$('html, body').animate({
+					scrollTop:1000
+				}, 'slow');
+			}
+			{% endfor %}
+		}				
+	</script>
+{% endblock %}

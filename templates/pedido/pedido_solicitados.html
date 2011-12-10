@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>	
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+<div class="headerSubsites">
+	<div class="subsiteIcon" style="width: 92px;">
+		<img src="{{ STATIC_URL }}icons/orderIcon.png"/>
+	</div>
+	<div class="subsiteDescrOptions">
+		<div class="title">PEDIDOS</div>
+		<div id="submenuPedido" class="subSiteMenu">
+			<a href="/pedidos/"><span id="submenuPedido_1" onclick="selectSubmenu(this.id)">Consultar</span></a>
+			<a href="/pedidos/ingresar/"><span id="submenuPedido_2" onclick="selectSubmenu(this.id)">Ingresar</span></a>
+			<a href="/pedidos/modificar/"><span id="submenuPedido_3" onclick="selectSubmenu(this.id)">Modificar</span></a>
+			<span id="submenuPedido_4" class="selectedSubmenu" onclick="selectSubmenu(this.id)">Autorizar / Cancelar</span>
+			<a href="/pedidos/eliminar/"><span id="submenuPedido_5" onclick="selectSubmenu(this.id)">Eliminar</span></a>
+		</div>
+	</div>
+</div>
+	
+<div id="ContentPaneSubsites" class="contentPaneSubsites" style="padding: 10px;">
+	<div class="searchClientPanel">
+		<div class="title">
+			Panel de Búsquedas
+		</div>
+		
+		<div class="searchBox">
+			<span>
+				Busqueda por C&oacute;digo:
+			</span>
+
+			<input type="text"/ style="width: 70%;">
+		</div>
+	</div>
+	
+	<div class="clientListSection">
+		<form method="POST">
+			{% csrf_token %}
+		<div class="clientTypeCheckBoxs">
+				Cambiar estado a :			
+				{% for e in estados %}
+				<label>
+					<input value="{{ e.pk }}" type="radio" name="accion"/>{{ e.nombre }}
+				</label>
+				|
+				{% endfor %}
+		</div>
+		<div class="content">
+			<ul>
+				{% for p in pedidos %}
+				<li codigoDePedido="{{ p }}">              
+					<div class="descriptionPane" style="margin-left: 10px;">
+						<div><label>Codigo Pedido : </label><span>{{ p }}</span></div>
+						<div>
+							<label>Cliente : </label><span>{{ p.cliente }}</span><a name="fancyClientsInfoPreview" href="/clientes/cliente_fancyPerfil/{{ p.cliente.usuario.username }}" rel="perfilesDeClientes" title="Perfil de Cliente">Ver Perfil del Cliente</a>
+						</div>
+						<div>
+							<label>Vendedor : </label><span>{{ p.vendedor }}</span><a name="fancyClientsInfoPreview" href="/empleados/empleado_fancyPerfil/{{  p.vendedor.usuario.username }}" rel="perfilesDeEmpleados" title="Perfil de Vendedor">Ver perfil del Vendedor</a>
+						</div>
+						<div>
+							<label>Estado del Pedido : </label><span>{{ p.estado }}</span>
+						</div>
+						<div class="lastItem">
+							<label>Fecha de Solicitud : </label><span>{{ p.fechaDeCreacion }}</span>
+						</div>
+					</div>
+					<div class="optionsPane" style="text-align: center; height: 110px; width: 160px">
+						<span id="idCliente_{{ p.pk }}" class="buttons greenButton" style="margin-top: 5px; width: 90px; height: 18px;">
+							<label style="cursor: pointer;">
+								<input type="checkbox" value="{{ p.pk }}" name="listadoIdDePedidos" style="position: relative; top: 2px;"/>
+								Seleccionar
+							</label>
+						</span>
+					</div>
+				</li>
+				
+				<li class="division"></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div style="width:100%; text-align:right;">
+			<span class="buttons blueButton" style="margin-top: 5px;" onclick="$('#submitActivarDesactivar').trigger('click')">
+				<a><i class="okBoxIcon"></i>Guardar Cambios</a>
+			</span>
+			
+			<input id="submitActivarDesactivar" type="submit" value="guardar" style="display:none;"/>
+		</div>
+		</form>             
+	</div>
+	
+	<div id="ClientProfileViewPane" class="clientProfileViewPane" style="display: none;">
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+{% endblock %}

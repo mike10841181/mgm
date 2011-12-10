@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>	
+		<li><a href="/catalogo/">Cat&aacute;logo</a></li>				
+	{% endif %}
+{% endblock %}
+
+{% block contenido %}
+	<div class="headerSubsites">
+		<div class="subsiteIcon" style="width: 92px;">
+			<img src="{{ STATIC_URL }}icons/orderIcon.png"/>
+		</div>
+		<div class="subsiteDescrOptions">
+			<div class="title">PRODUCCION</div>
+			<div id="submenuProduccion" class="subSiteMenu">
+				<span id="submenuProduccion_1" class="selectedSubmenu" onclick="selectSubmenu(this.id)">Ver Reporte</span>
+				<span id="submenuProduccion_2" onclick="selectSubmenu(this.id)">Generar Reporte</span>
+			</div>
+		</div>
+	</div>
+	
+	<div id="ContentPaneSubsites" class="contentPaneSubsites" style="padding: 10px;">
+	</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block jsLinks %}
+{% endblock %}

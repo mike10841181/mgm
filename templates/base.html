@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=9, IE=8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="Content-Language" content="es" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="Zapatos, Calzado, Shoes" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/general.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jqueryLib/tipsy-0.1.7/tipsy.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}fancyBoxLib/jquery.fancybox-1.3.4.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jqueryLib/thumbsJquery/thumbs.css" />
+        <script type="text/javascript" src="{{ STATIC_URL }}js/html5.js"></script>
+		
+		{% block cssLinks %}{% endblock %}
+	</head>	
+	<body>
+		<header>
+            <div class="innerHeader">
+                <div class="loginSpace">					
+					{% if usuario.is_authenticated %}
+						<label class="loginButton">
+							<i></i>
+							Bienvenido <a class="link" onmouseover="$('.myPofMinDetails').fadeIn('2000')">{{ usuario.username}}</a> - 
+							<a class="link" href="/logout/">Salir</a>				
+						</label>
+						<label class="myPofMinDetails">
+							<div class="usrProfImage">
+								<img src="{{ usuario.persona.imagen.url }}" height="70" width="70" alt=""/>
+							</div>
+							<div class="usrProfContDescrp">
+								<div class="itemPerfil">{{ usuario.persona.primerNombre }} {{ usuario.persona.segundoNombre }} {{ usuario.persona.primerApellido}} {{ usuario.persona.segundoApellido}}</div>
+								<div class="itemPerfil">{{ usuario.persona.correoElectronico}}</div>
+								<div class="itemPerfil">{{ usuario.persona.numeroDeIdentidad}}</div>
+								<div>
+									{% if usuario.is_staff %}
+										<a href="/empleados/modificar/{{ usuario.username }}">Editar perfil</a>&nbsp;&nbsp;<a href="#" onclick="$('.myPofMinDetails').fadeOut('2000')">Cerrar</a>
+									{% else %}
+										<a href="/clientes/modificar/{{ usuario.username }}">Editar perfil</a>&nbsp;&nbsp;<a href="#" onclick="$('.myPofMinDetails').fadeOut('2000')">Cerrar</a>
+									{% endif %}
+								</div>
+							</div>
+						<label>
+					{% else %}
+						<label id="LoginCalzadoGloria" class="loginButton">
+							<i></i>
+							<a class="link" href="/login/" >Iniciar Sesion</a>						
+						</label>
+					{% endif %}
+                </div>
+                <h1 id="logoCalzadoGloria">
+                    <a href="/">
+                        <img src="{{ STATIC_URL }}images/logoHeader.png" alt="encabezado_logo.png"/>
+                    </a>
+                </h1>
+                <nav class="menu">
+                    <ul> 
+						{% block navMenu %}{% endblock %}
+                    </ul>
+                </nav>
+            </div>
+        </header>	
+        
+		<section class="globalContainer">
+			<div class="innerContainer">
+				{% block contenido %}{% endblock %}
+			</div>
+		</section>		
+		
+		<footer>
+			{% block footer %}{% endblock %}
+		</footer>
+	</body>
+	<script type="text/javascript" src="{{ STATIC_URL }}jqueryLib/jquery-1.6.2.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}jqueryLib/easing-1.3.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}jqueryLib/tipsy-0.1.7/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}fancyBoxLib/jquery.mousewheel-3.0.4.pack.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}fancyBoxLib/jquery.fancybox-1.3.4.pack.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}jqueryLib/thumbsJquery/jquery.thumbs.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/calzadoGloriaJs.js"></script>
+	{% block jsLinks %}{% endblock %}
+</html>

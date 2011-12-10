@@ -1,0 +1,33 @@
+<div class="catalog_fancyPreviewDetails">
+	<div class="imagen">
+		<img src="{{modelo.imagen.url}}" width="500"/>
+	</div>
+	<div class="contentFancy">
+		<div class="title">Detalles del Modelo - "{{modelo}} " :</div>
+		<div class="details">
+			<div class="items">
+				<span class="labelDsrc">Familia del modelo :</span><span class="descr">{{ modelo.familia.nombre }}</span>
+			</div>
+			<div class="items">
+				<span class="labelDsrc">Suela(s) :</span><span class="descr">{%for s in modelo.familia.suelas.all%}{{s.nombre}}{%if not forloop.last %}, {%endif%}{%endfor%}</span>
+			</div>
+			<div class="items">
+				<span class="labelDsrc">Talla(s) Disponible(s) :</span><span class="descr">{%for t in modelo.categoria.tallas.all%}{{t.valor}}{%if not forloop.last %}, {%endif%}{%endfor%}</span>
+			</div>
+			<div class="items">
+				<span class="labelDsrc">Precio al detalle :</span><span class="descr">Lps.: {{ modelo.precioBaseAlDetalle }}</span>
+			</div>
+			<div class="items">
+				<span class="labelDsrc">Precio por mayor :</span><span class="descr">Lps.: {{ modelo.precioBasePorMayor}}</span>
+			</div>
+		</div>
+		<div class="optionsPane">
+			<span class="buttons greenButton" onclick=''>
+				<a><i class="btnAddToOrder"></i>Agregar a pedido</a>
+			</span>
+			<span class="buttons greenButton" onclick=''>
+				<a><i class="btnAddToCot"></i>Agregar a cotizaci&oacute;n</a>
+			</span>
+		</div>
+	</div>
+<div>

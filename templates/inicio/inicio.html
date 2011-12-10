@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block cssLinks %}
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/inicio.css" />
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}slideLib/css/global.css" />
+{% endblock %}
+
+{% block navMenu %}
+	{% if usuario.is_authenticated %}
+		{% if usuario.is_staff %}
+			<li><a href="/admin/">Admon.</a></li>
+			<li><a href="/clientes/">Clientes</a></li>
+		{% endif %}
+		<li><a href="/cotizaciones/">Cotizaciones</a></li>	
+		{% if usuario.is_staff %}
+			<li><a href="/empleados/">Empleados</a></li>
+		{% endif %}		
+		<li><a href="/pedidos/">Pedidos</a></li>
+		
+		{% if usuario.is_staff %}
+			<li><a href="/produccion/">Produccion</a></li>
+		{% endif %}						
+	{% endif %}
+	<li><a href="/catalogo/">Cat&aacute;logo</a></li>
+{% endblock %}
+
+{% block contenido %}
+	<div class="slideShow">
+		<div id="slides">
+			<div class="slides_container">
+				<div class="slide">
+					<a href="#" title="Descripcion de La Imagen" target="_blank"><img src="{{ STATIC_URL }}images/zapatos/01.jpg" width="960" height="360" alt="Slide 1"></a>
+					<div class="caption" style="bottom:0">
+						<p>Descripcion de Esta imagen aqui</p>
+					</div>
+				</div>
+				<div class="slide">
+					<a href="#" title="Descripcion de La Imagen" target="_blank"><img src="{{ STATIC_URL }}images/zapatos/02.jpg" width="960" height="360" alt="Slide 2"></a>
+					<div class="caption">
+						<p>Descripcion de Esta imagen aqui</p>
+					</div>
+				</div>
+				<a href="#" title="Descripcion de La Imagen" target="_blank"><img src="{{ STATIC_URL }}images/zapatos/03.jpg" width="960" height="360" alt="Slide 3"></a>
+			</div>
+			<a href="#" class="prev"><span alt="Arrow Prev">&nbsp;</span></a>
+			<a href="#" class="next"><span alt="Arrow Next">&nbsp;</span></a>
+		</div>
+	</div>
+	<div class="boxesSpace">
+		<div class="box">
+			<div class="title">Enlaces Importantes</div>
+			<div class="content">
+				<div class="items">
+					<img src="{{ STATIC_URL }}icons/pedidosIcon.png"/>
+					<a href="pedidos.php">Secci&oacute;n de Pedidos</a>
+				</div>
+				<div class="items">
+					<img src="{{ STATIC_URL }}icons/cotizacionIcon.png"/>
+					<a href="cotizacion.php">Cotizaci&oacute;nes</a>
+				</div>
+			</div>
+		</div>
+		<div class="box">
+			<div class="title">Visi&oacute;n</div>
+			<div class="content">
+				Sed ut perspiciatis unde omnis iste natus error sit
+				voluptatem accusantium doloremque laudantium, totam
+				rem aperiam, eaque ipsa quae ab illo inventore
+				veritatis et quasi architecto beatae vitae dicta
+				sunt explicabo. Nemo enim ipsam voluptatem quia
+				voluptas sit aspernatur aut odit aut fugit, sed
+				quia consequuntur magni dolores eos qui ratione
+				voluptatem sequi nesciunt.
+			</div>
+		</div>
+		<div class="box">
+			<div class="title">Misi&oacute;n</div>
+			<div class="content">
+				Sed ut perspiciatis unde omnis iste natus error sit
+				voluptatem accusantium doloremque laudantium, totam
+				rem aperiam, eaque ipsa quae ab illo inventore
+				veritatis et quasi architecto beatae vitae dicta
+				sunt explicabo. Nemo enim ipsam voluptatem quia
+				voluptas sit aspernatur aut odit aut fugit, sed
+				quia consequuntur magni dolores eos qui ratione
+				voluptatem sequi nesciunt.
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+	<p>footer</p>
+{% endblock %}
+
+{% block jsLinks %}
+	<script type="text/javascript" src="{{ STATIC_URL }}slideLib/js/slides.min.jquery.js"></script>
+	<script type="text/javascript">
+        $(function(){
+            $('#slides').slides({
+                preload: true,
+                preloadImage: 'slideLib/img/loading.gif',
+                play: 5000,
+                pause: 2500,
+                hoverPause: true,
+                animationStart: function(current){
+                    $('.caption').animate({
+                        bottom:-35
+                    },100);
+                    if (window.console && console.log) {
+                        // example return of current slide number
+                        console.log('animationStart on slide: ', current);
+                    };
+                },
+                animationComplete: function(current){
+                    $('.caption').animate({
+                        bottom:0
+                    },200);
+                    if (window.console && console.log) {
+                        // example return of current slide number
+                        console.log('animationComplete on slide: ', current);
+                    };
+                },
+                slidesLoaded: function() {
+                    $('.caption').animate({
+                        bottom:0
+                    },200);
+                }
+            });
+        });
+    </script>
+{% endblock %}
